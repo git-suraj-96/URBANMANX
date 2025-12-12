@@ -64,7 +64,7 @@
 
                 </div>
               </label>
-              <button class="sm:hidden flex items-center justify-center text-white">
+              <button class="sm:hidden flex items-center justify-center text-white " id="smaal-screen-search">
                 <span class="material-symbols-outlined text-2xl">search</span>
               </button>
               <div class="flex justify-center item-center">
@@ -81,7 +81,7 @@
 
                 <a href="/profile">
                   <button
-                    class="relative flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-transparent text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+                    class="relative flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-transparent text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 product">
                     <span class="material-symbols-outlined text-2xl">
                       account_circle
                     </span>
@@ -98,10 +98,10 @@
               <h2 class="text-white text-2xl sm:text-3xl font-bold leading-tight tracking-[-0.015em] px-4 pb-4 pt-5">
                 EXPLORE EVERYTHING
               </h2>
-              <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 p-4">
+              <div class="grid grid-cols-2 lg:grid-cols-3 gap-[2px] sm:gap-6 p-4">
                 <a href="/Explore/tshirt" class="product">
                   <div
-                    class="relative bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-[4/3] sm:aspect-square group overflow-hidden"
+                    class="relative bg-cover bg-center flex flex-col gap-3 rounded-[5px] justify-end p-4 aspect-[4/3] sm:aspect-square group overflow-hidden"
                     data-alt="Model wearing a black t-shirt" style="
                         background-image: linear-gradient(
                             0deg,
@@ -119,7 +119,7 @@
                 </a>
                 <a href="/Explore/shirt" class="product">
                   <div
-                    class="relative bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-[4/3] sm:aspect-square group overflow-hidden"
+                    class="relative bg-cover bg-center flex flex-col gap-3 rounded-[5px] justify-end p-4 aspect-[4/3] sm:aspect-square group overflow-hidden"
                     data-alt="Model wearing a patterned shirt" style="
                         background-image: linear-gradient(
                             0deg,
@@ -137,7 +137,7 @@
                 </a>
                 <a href="/Explore/cargo" class="product">
                   <div
-                    class="relative bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-[4/3] sm:aspect-square group overflow-hidden"
+                    class="relative bg-cover bg-center flex flex-col gap-3 rounded-[5px] justify-end p-4 aspect-[4/3] sm:aspect-square group overflow-hidden"
                     data-alt="Close up of cargo pants" style="
                         background-image: linear-gradient(
                             0deg,
@@ -155,7 +155,7 @@
                 </a>
                 <a href="/Explore/bottoms" class="product">
                   <div
-                    class="relative bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-[4/3] sm:aspect-square group overflow-hidden"
+                    class="relative bg-cover bg-center flex flex-col gap-3 rounded-[5px] justify-end p-4 aspect-[4/3] sm:aspect-square group overflow-hidden"
                     data-alt="Model wearing stylish trousers" style="
                         background-image: linear-gradient(
                             0deg,
@@ -173,7 +173,7 @@
                 </a>
                 <a href="/Explore/superdeals" class="product">
                   <div
-                    class="relative bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-[4/3] sm:aspect-square group overflow-hidden"
+                    class="relative bg-cover bg-center flex flex-col gap-3 rounded-[5px] justify-end p-4 aspect-[4/3] sm:aspect-square group overflow-hidden"
                     data-alt="Promotional image with bright colors" style="
                         background-image: linear-gradient(
                             0deg,
@@ -191,7 +191,7 @@
                 </a>
                 <a href="/Explore/newarrivals" class="product">
                   <div
-                    class="relative bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-[4/3] sm:aspect-square group overflow-hidden"
+                    class="relative bg-cover bg-center flex flex-col gap-3 rounded-[5px] justify-end p-4 aspect-[4/3] sm:aspect-square group overflow-hidden"
                     data-alt="Collection of new clothing items" style="
                         background-image: linear-gradient(
                             0deg,
@@ -250,11 +250,11 @@
               </div>
 
 
-              <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4 new-arrivals-box cursor-pointer">
+              <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-[2px] p-4 new-arrivals-box cursor-pointer">
                 <% if(newArrivals.length> 0){%>
                   <%newArrivals.forEach(product=>{%>
                     <a href="/product/<%= product._id %>">
-                      <div class="flex flex-col bg-white/5 rounded-xl overflow-hidden group product">
+                      <div class="flex flex-col bg-white/5 rounded-[5px] overflow-hidden group product">
                         <div class="relative aspect-[3/4] overflow-hidden">
                           <img
                             class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -288,12 +288,12 @@
               <h2 class="text-white text-2xl sm:text-3xl font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
                 ALL PRODUCTS
               </h2>
-              <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 cursor-pointer">
+              <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[2px] p-4 cursor-pointer">
 
                 <%if(allProducts.length> 0){%>
                   <%allProducts.forEach((product, i)=>{%>
                     <a href="/product/<%= product._id %>">
-                      <div class="flex flex-col bg-white/5 rounded-xl overflow-hidden group product">
+                      <div class="flex flex-col bg-white/5 rounded-[5px] overflow-hidden group product">
                         <img
                           class="aspect-[3/4] w-full object-cover transition-transform duration-300 group-hover:scale-105"
                           data-alt="Basic white t-shirt." src=<%=product.images[0].secure_url %>
@@ -397,76 +397,107 @@
 
   <!-- Sidebar Overlay (Backdrop) -->
   <!-- This simulates the open state by default -->
-  <div id="small-screen" class="fixed inset-0 bg-black/70 backdrop-blur-[2px] z-40 transition-opacity hidden z-1000 transition-all duration-[2000ms]">
-  <!-- Sidebar Component -->
-  <aside
-    class="fixed top-0 left-0 bottom-0 w-[75%] max-w-[280px] bg-[#0d0d0d] z-50 flex flex-col shadow-2xl transition-transform duration-300 sidebar-scroll">
-    <div class="flex items-center justify-between p-5 pb-2">
-      <div class="flex items-center gap-3">
-        <div class="size-8 rounded bg-primary/20 flex items-center justify-center text-primary">
-          <span class="material-symbols-outlined text-[20px] font-bold">storefront</span>
-        </div>
-      </div>
-      <button
-        id="small-x-btn"
-        class="flex size-8 cursor-pointer items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors">
-        <span class="material-symbols-outlined text-[20px]">close</span>
-      </button>
-    </div>
-    <div class="px-5 py-6">
-      <div class="relative group">
-        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-          <span
-            class="material-symbols-outlined text-[#6b7280] group-focus-within:text-white transition-colors text-[20px]">search</span>
-        </div>
-        <input
-          class="block w-full p-2.5 pl-10 text-sm text-white bg-[#1a1a1a] border border-[#262626] rounded-xl placeholder-[#6b7280] focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none transition-all"
-          placeholder="Search..." type="text" />
-      </div>
-    </div>
-    <div class="flex flex-col flex-1 px-4 gap-1 overflow-y-auto">
-      <div class="px-3 py-2">
-        <p class="text-[#6b7280] text-xs font-bold uppercase tracking-wider mb-2">Menu</p>
-      </div>
-      <a class="flex items-center gap-3 px-3 py-3 rounded-lg bg-primary text-white shadow-lg shadow-primary/20 group"
-        href="#">
-        <span class="material-symbols-outlined text-[22px]">home</span>
-        <p class="text-sm font-medium leading-normal">Home</p>
-      </a>
-      <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group"
-        href="#">
-        <span class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">grid_view</span>
-        <p class="text-sm font-medium leading-normal">Categories</p>
-      </a>
-      <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group justify-between"
-        href="#">
+  <div id="small-screen"
+    class="fixed inset-0 bg-black/70 backdrop-blur-[2px] z-40 transition-opacity hidden z-1000 transition-all duration-[2000ms] min-[631px]:hidden">
+    <!-- Sidebar Component -->
+    <aside
+      class="fixed top-0 left-0 bottom-0 w-[75%] max-w-[280px] bg-[#0d0d0d] z-50 flex flex-col shadow-2xl transition-transform duration-300 sidebar-scroll">
+      <div class="flex items-center justify-between p-5 pb-2">
         <div class="flex items-center gap-3">
-          <span
-            class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">shopping_cart</span>
-          <p class="text-sm font-medium leading-normal">Cart</p>
+          <div class="size-8 rounded bg-primary/20 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-[20px] font-bold">storefront</span>
+          </div>
         </div>
-        <span class="bg-primary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">3</span>
-      </a>
-      <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group"
-        href="#">
-        <span class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">person</span>
-        <p class="text-sm font-medium leading-normal">Profile</p>
-      </a>
-      <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group"
-        href="#">
-        <span class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">favorite</span>
-        <p class="text-sm font-medium leading-normal">Favorites</p>
-      </a>
-    </div>
-    <div class="p-5 border-t border-[#1a1a1a] mt-auto">
-      <button
-        class="w-full flex cursor-pointer items-center justify-center gap-2 rounded-lg h-10 px-4 bg-[#1a1a1a] hover:bg-[#262626] text-[#ef4444] text-sm font-bold leading-normal tracking-[0.015em] transition-colors">
-        <span class="material-symbols-outlined text-[18px]">logout</span>
-        <span class="truncate">Logout</span>
-      </button>
-    </div>
-  </aside>
-</div>
+        <button id="small-x-btn"
+          class="flex size-8 cursor-pointer items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+      <div class="px-5 py-6">
+        <div class="relative group">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none cursor-pointer"
+            id="small-screen-search-btn">
+            <span
+              class="material-symbols-outlined text-[#6b7280] group-focus-within:text-white transition-colors text-[20px]">search</span>
+          </div>
+          <input
+            class="block w-full p-2.5 pl-10 text-sm text-white bg-[#1a1a1a] border border-[#262626] rounded-xl placeholder-[#6b7280] focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none transition-all"
+            placeholder="Search..." type="text" />
+        </div>
+      </div>
+      <div class="flex flex-col flex-1 px-4 gap-1 overflow-y-auto">
+        <div class="px-3 py-2">
+          <p class="text-[#6b7280] text-xs font-bold uppercase tracking-wider mb-2">Menu</p>
+        </div>
+        <a class="flex items-center gap-3 px-3 py-3 rounded-lg bg-primary text-white shadow-lg shadow-primary/20 group"
+          href="/">
+          <span class="material-symbols-outlined text-[22px]">home</span>
+          <p class="text-sm font-medium leading-normal">Home</p>
+        </a>
+        <a id="category-option-btn" class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group"
+          href="#">
+          <span class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">grid_view</span>
+          <p class="text-sm font-medium leading-normal">Categories</p>
+        </a>
+        <div class="hidden transition-all " id="category-option">
+          <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group product"
+            href="/Explore/tshirt">
+            <span
+              class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">grid_view</span>
+            <p class="text-sm font-medium leading-normal">T-SHIRT</p>
+          </a>
+          <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group product"
+            href="/Explore/shirt">
+            <span
+              class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">grid_view</span>
+            <p class="text-sm font-medium leading-normal">SHIRT</p>
+          </a>
+          <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group product"
+            href="/Explore/bottoms">
+            <span
+              class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">grid_view</span>
+            <p class="text-sm font-medium leading-normal">BOTTOMS</p>
+          </a>
+          <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group product"
+            href="/Explore/cargos">
+            <span
+              class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">grid_view</span>
+            <p class="text-sm font-medium leading-normal">CARGOS</p>
+          </a>
+        </div>
+        <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group justify-between"
+          href="/shopping-cart-page">
+          <div class="flex items-center gap-3">
+            <span
+              class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">shopping_cart</span>
+            <p class="text-sm font-medium leading-normal">Cart</p>
+          </div>
+          <span class="bg-primary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+            <%= cart.length %>
+          </span>
+        </a>
+        <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group"
+          href="/profile">
+          <span class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">person</span>
+          <p class="text-sm font-medium leading-normal">Profile</p>
+        </a>
+        <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group"
+          href="#">
+          <span class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">favorite</span>
+          <p class="text-sm font-medium leading-normal">Favorites</p>
+        </a>
+      </div>
+      <div class="p-5 border-t border-[#1a1a1a] mt-auto">
+        <a href="/logout">
+          <button
+            class="w-full flex cursor-pointer items-center justify-center gap-2 rounded-lg h-10 px-4 bg-[#1a1a1a] hover:bg-[#262626] text-[#ef4444] text-sm font-bold leading-normal tracking-[0.015em] transition-colors">
+            <span class="material-symbols-outlined text-[18px]">logout</span>
+            <span class="truncate">Logout</span>
+          </button>
+        </a>
+      </div>
+    </aside>
+  </div>
   <script src="/javascripts/home.js"></script>
 </body>
 

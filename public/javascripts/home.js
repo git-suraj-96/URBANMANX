@@ -9,6 +9,12 @@ const searchBox = document.getElementById('search-box');
 const menuBtn = document.getElementById("menu");
 const smallScreen = document.getElementById("small-screen");
 const smallXbtn = document.getElementById('small-x-btn');
+const smallScreenSearch = document.getElementById("smaal-screen-search");
+const smallScreenSearchBtn  = document.getElementById("small-screen-search-btn");
+const categoryOptionBtn  = document.getElementById('category-option-btn');
+const categoryOption  = document.getElementById('category-option');
+
+
 
 let newArrivalBtnText;
 newArrivalsHeaderBtn.forEach((btn, i) => {
@@ -65,7 +71,7 @@ const newArrivalsProductChange = (data) => {
   newArrivalsBox.innerHTML = "";
   if (data.products.length > 0) {
     data.products.forEach((product) => {
-      let anchor =  document.createElement("a");
+      let anchor = document.createElement("a");
       anchor.setAttribute('href', `/product/${product._id}`);
       let child = document.createElement("div");
       child.className =
@@ -98,36 +104,58 @@ const newArrivalsProductChange = (data) => {
   }
 };
 
-window.addEventListener("pageshow", (event)=>{
-  if(event.persisted){
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) {
     window.location.reload();
   }
 });
 
-menuBtn.addEventListener("click", ()=>{
+menuBtn.addEventListener("click", () => {
   smallScreen.style.display = "block";
   document.body.style.overflow = "hidden";
 })
 
-smallXbtn.addEventListener("click", ()=>{
+smallXbtn.addEventListener("click", () => {
   smallScreen.style.display = "";
   document.body.style.overflow = "auto";
-})
+});
 
-searchBtn.addEventListener('click', ()=>{
-  callSerach();
-})
+smallScreenSearch.addEventListener("click", () => {
+  smallScreen.style.display = "block";
+  document.body.style.overflow = "hidden";
+});
 
-function callSerach(){
-   try{
-    const query = searchBox.value;
-    if(!query){
+searchBtn.addEventListener('click', () => {
+  const query = searchBox.value;
+  callSerach(query);
+  searchBox.value = "";
+});
+
+smallScreenSearchBtn.addEventListener("click", ()=>{
+  console.log("hello")
+});
+
+function callSerach(query) {
+  try {
+
+    if (!query) {
       window.location.reload();
       return;
     };
-    searchBox.value = "";
+
     window.location.href = `/search/${query}`;
-  }catch(err){
+  } catch (err) {
     console.log(err);
   }
 };
+
+let drop = true;
+categoryOptionBtn.addEventListener("click", ()=>{
+  if(drop){
+    categoryOption.style.display = "block";
+    drop = false;
+  }else{
+    categoryOption.style.display = "";
+    drop = true;
+  }
+});

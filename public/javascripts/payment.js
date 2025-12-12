@@ -79,6 +79,8 @@ codBtn.addEventListener("click", () => {
 
 
 upiPayBtn.addEventListener("click", async () => {
+  loaderBox.style.display = "block";
+
   let amountText = upiPayBtn.textContent.replace(/[^0-9.]/g, "");
   let amount = Number(amountText);
 
@@ -93,6 +95,7 @@ upiPayBtn.addEventListener("click", async () => {
   });
 
   order = await order.json();
+  loaderBox.style.display = "";
 
   var options = {
     key: "rzp_test_RldB4sV5LgYUzp",

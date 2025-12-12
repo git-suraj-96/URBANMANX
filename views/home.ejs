@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URBANMANX Single-Page Home</title>
+  <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script> -->
+  <link rel="stylesheet" href="/stylesheets/output.css">
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link href="https://fonts.gstatic.com" crossorigin rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+  <link href="/stylesheets/home.css" rel="stylesheet" />
+</head>
+
+<body class="font-display scroll-smooth">
+  <div
+    class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden">
+    <div class="layout-container flex h-full grow flex-col">
+      <div class="flex flex-1 justify-center">
+        <div class="layout-content-container flex flex-col max-w-[1280px] flex-1">
+          <!-- header section start from here -->
+          <header
+            class="fixed top-0 left-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-6 sm:px-10 py-4 bg-background-dark/80 backdrop-blur-sm nav-bar fixed top-0 w-full">
+            <div class="flex items-center gap-4">
+              <button class="flex items-center justify-center text-white lg:hidden min-[631px]:hidden" id="menu">
+                <span class="material-symbols-outlined text-2xl">menu</span>
+              </button>
+              <a class="flex items-center gap-3 text-white" href="#">
+                <div class="size-6">
+                  <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+                  </svg>
+                </div>
+                <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] hidden sm:block">
+                  URBANMANX
+                </h2>
+              </a>
+            </div>
+            <nav class="hidden items-center gap-9 lg:flex ml-40">
+              <a class="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal product"
+                href="/">Home</a>
+              <a class="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal product"
+                href="#">Shop</a>
+              <a class="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal product"
+                href="#">Deals</a>
+              <a class="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal product"
+                href="#footer">About</a>
+            </nav>
+            <div class="flex flex-1 justify-around items-center gap-4 sm:gap-6">
+              <label class="hidden sm:flex flex-col min-w-40 !h-10 w-[60%]">
+                <div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+                  <div id="search-btn"
+                    class="text-white/60 flex border-none bg-white/10 items-center justify-center pl-3 rounded-l-lg border-r-0 product ">
+                    <span class="material-symbols-outlined text-xl">search</span>
+                  </div>
+                  <input id="search-box"
+                    class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border-none bg-white/10 h-full placeholder:text-white/60 px-3 pl-2 text-sm font-normal leading-normal"
+                    placeholder="Search" value />
+
+                </div>
+              </label>
+              <button class="sm:hidden flex items-center justify-center text-white">
+                <span class="material-symbols-outlined text-2xl">search</span>
+              </button>
+              <div class="flex justify-center item-center">
+                <a href="/shopping-cart-page" class="product">
+                  <button
+                    class="relative flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-transparent text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+                    <span class="material-symbols-outlined text-2xl">shopping_cart</span>
+                    <div
+                      class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-white text-[10px] font-bold">
+                      <%= cart.length %>
+                    </div>
+                  </button>
+                </a>
+
+                <a href="/profile">
+                  <button
+                    class="relative flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-transparent text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+                    <span class="material-symbols-outlined text-2xl">
+                      account_circle
+                    </span>
+                  </button>
+                </a>
+              </div>
+            </div>
+          </header>
+
+          <!-- main section start from here -->
+          <main class="px-4 sm:px-6 md:px-10 py-8 md:py-12 space-y-16">
+            <!-- explore-everything start from here -->
+            <section class="mt-12 explore-everything ">
+              <h2 class="text-white text-2xl sm:text-3xl font-bold leading-tight tracking-[-0.015em] px-4 pb-4 pt-5">
+                EXPLORE EVERYTHING
+              </h2>
+              <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 p-4">
+                <a href="/Explore/tshirt" class="product">
+                  <div
+                    class="relative bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-[4/3] sm:aspect-square group overflow-hidden"
+                    data-alt="Model wearing a black t-shirt" style="
+                        background-image: linear-gradient(
+                            0deg,
+                            rgba(0, 0, 0, 0.6) 0%,
+                            rgba(0, 0, 0, 0) 60%
+                          ),
+                          url('/images/static-images/tshirt.jpg');
+                      ">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300">
+                    </div>
+                    <p class="text-white text-lg font-bold leading-tight z-10">
+                      T-SHIRT
+                    </p>
+                  </div>
+                </a>
+                <a href="/Explore/shirt" class="product">
+                  <div
+                    class="relative bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-[4/3] sm:aspect-square group overflow-hidden"
+                    data-alt="Model wearing a patterned shirt" style="
+                        background-image: linear-gradient(
+                            0deg,
+                            rgba(0, 0, 0, 0.6) 0%,
+                            rgba(0, 0, 0, 0) 60%
+                          ),
+                          url('https://lh3.googleusercontent.com/aida-public/AB6AXuDhM6WhxGC3_WOHkPkoh2GnCPNdvN0Gtlm9e0VTFLewaxXXogXX7S58RmuAcIk4Hw5r_sILhJmSAda7VVjPNP7iQ7sB1pg02dMHzE7Ci80g2Tv8ZUr0i9P0ZCPqe_g3VVRn1ovgoYmr5Mf_L119I_fz2r19x21St0sLB3cO6PdVTPJlRvfX7nsax_xrRV0snZDdPt5A8cjrbt9uvWqs6hC78pnhDnHuUdX7LtGm6i3ZHODJZKrjbFOWZGClXXxpInerkSBPBpOqwyQ');
+                      ">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300">
+                    </div>
+                    <p class="text-white text-lg font-bold leading-tight z-10">
+                      SHIRT
+                    </p>
+                  </div>
+                </a>
+                <a href="/Explore/cargo" class="product">
+                  <div
+                    class="relative bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-[4/3] sm:aspect-square group overflow-hidden"
+                    data-alt="Close up of cargo pants" style="
+                        background-image: linear-gradient(
+                            0deg,
+                            rgba(0, 0, 0, 0.6) 0%,
+                            rgba(0, 0, 0, 0) 60%
+                          ),
+                          url('https://lh3.googleusercontent.com/aida-public/AB6AXuBOiQ_SSzhuz7Xx0ykGDUSdYW_GjXSms2LgMoRRttuOVpkPlSE0k4e_Sbi_JPdD7k_X_QQO2ZttS5py6Yg8xgu6bDjRz3KRwcMkhzP7j07t9uOCPkbBuBXyFvft-ciuvWdIEl1g-AAyv0eWoeWY7_1yv-hfeAzGlN3syPgx8hzh8Evhdd3wff2G8Wy6Q8iOTIxnPRXlIzUsqs3pmJ9ekwoxFrzx8yfjkBligvnhGggiKUNQkCWamHnrWYChz_54AVazJN8sW8PC28U');
+                      ">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300">
+                    </div>
+                    <p class="text-white text-lg font-bold leading-tight z-10">
+                      CARGO
+                    </p>
+                  </div>
+                </a>
+                <a href="/Explore/bottoms" class="product">
+                  <div
+                    class="relative bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-[4/3] sm:aspect-square group overflow-hidden"
+                    data-alt="Model wearing stylish trousers" style="
+                        background-image: linear-gradient(
+                            0deg,
+                            rgba(0, 0, 0, 0.6) 0%,
+                            rgba(0, 0, 0, 0) 60%
+                          ),
+                          url('https://lh3.googleusercontent.com/aida-public/AB6AXuDJwZesVgZkaPq5kcpn6Vllft8F4gMOp0vxWecI3dbilhgYxtdpu4uQJ1lzAJlfc-Sb0AAk58a2bZdBE7YcI8uiibpw3QEt_HTNkRX0jn_9iJXM58lJAF9WxnhoMvXraUNiYBugMtZQM-ClIxho5CiYKswVgzRTxPha7yy8bo6pwDTHi-h1OLbb1A-iL_A5s-EvtI32XOoq3ScSeMRs5J7t7gncV9D1qsl7NKgc6m-TQ8YAr3OfQvXx9aQ2iwzhas_TGy82VtptG8o');
+                      ">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300">
+                    </div>
+                    <p class="text-white text-lg font-bold leading-tight z-10">
+                      BOTTOMS
+                    </p>
+                  </div>
+                </a>
+                <a href="/Explore/superdeals" class="product">
+                  <div
+                    class="relative bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-[4/3] sm:aspect-square group overflow-hidden"
+                    data-alt="Promotional image with bright colors" style="
+                        background-image: linear-gradient(
+                            0deg,
+                            rgba(0, 0, 0, 0.6) 0%,
+                            rgba(0, 0, 0, 0) 60%
+                          ),
+                          url('https://lh3.googleusercontent.com/aida-public/AB6AXuAhN7jyz3AnVj3YtFikDvkkj-l_-StRaItCTlytzc7NUg_dVSXjH8wZud3Ycc5ufSUmASmPRIzzAhQCgn6TG94yAPy9n_MyaHFR0Q1m5IWMY0lW6z4FUUW0wPFZQGSnmwwQ2cxcAaEidZkcBfuamzG6iliGydfr8iZfNPGaJU_EyomITGdCovPPYND5hH-X5F_gAYN5jXgD-R4ueXUuRizwKpzVaqTbhiSGkY0rJm1QRQsmRNMiCxy_0Db8jM-O6nlRXD01rCL925Y');
+                      ">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300">
+                    </div>
+                    <p class="text-white text-lg font-bold leading-tight z-10">
+                      SUPER DEALS
+                    </p>
+                  </div>
+                </a>
+                <a href="/Explore/newarrivals" class="product">
+                  <div
+                    class="relative bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-[4/3] sm:aspect-square group overflow-hidden"
+                    data-alt="Collection of new clothing items" style="
+                        background-image: linear-gradient(
+                            0deg,
+                            rgba(0, 0, 0, 0.6) 0%,
+                            rgba(0, 0, 0, 0) 60%
+                          ),
+                          url('https://lh3.googleusercontent.com/aida-public/AB6AXuCCrfU-4Nhl9x_ghmmK7RguFQ1Y1wNeB7b4mlWXKsF6DxLdlj3iV0neFaGOcZ3D4K6GntCYNrEFyWtTB7fYR-WKD9pOf-g0SlQ-YSVgW-_kAr2zVp4cxq5H8K6hLIF08g-CB4qsfeME4qmzZoG5r_B9GadUzs7Nd3OoXCO93svQBgsjck2f3uSaE9sWL3xsY08L8XFBn0uiaXv9PNIZuw4qTfdsyepGd4T5kJUzXYZXvWrxt6XddKO5xw_-OmqZMneWIQDl3E7kT6c');
+                      ">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300">
+                    </div>
+                    <p class="text-white text-lg font-bold leading-tight z-10">
+                      NEW ARRIVALS
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </section>
+
+            <!-- new-arrivals start from here -->
+            <section>
+              <h2
+                class="text-white text-2xl sm:text-3xl font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 cursor-pointer">
+                NEW ARRIVALS
+              </h2>
+              <div class="flex gap-3 p-3 flex-wrap px-4 cursor-pointer">
+                <button
+                  class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary pl-4 pr-4 transition-transform hover:scale-105 active:scale-95 new-arrivals-header-btn new-arrival-btn">
+                  <p class="text-white text-sm font-semibold leading-normal">
+                    ALL PRODUCTS
+                  </p>
+                </button>
+                <button
+                  class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 pl-4 pr-4 transition-transform hover:scale-105 active:scale-95 new-arrivals-header-btn new-arrival-btn">
+                  <p class="text-white/80 text-sm font-medium leading-normal">
+                    T-SHIRT
+                  </p>
+                </button>
+                <button
+                  class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 pl-4 pr-4 transition-transform hover:scale-105 active:scale-95 new-arrivals-header-btn new-arrival-btn">
+                  <p class="text-white/80 text-sm font-medium leading-normal">
+                    SHIRT
+                  </p>
+                </button>
+                <button
+                  class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 pl-4 pr-4 transition-transform hover:scale-105 active:scale-95 new-arrivals-header-btn new-arrival-btn">
+                  <p class="text-white/80 text-sm font-medium leading-normal">
+                    CARGO
+                  </p>
+                </button>
+                <button
+                  class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 pl-4 pr-4 transition-transform hover:scale-105 active:scale-95 new-arrivals-header-btn new-arrival-btn">
+                  <p class="text-white/80 text-sm font-medium leading-normal">
+                    BOTTOMS
+                  </p>
+                </button>
+              </div>
+
+
+              <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4 new-arrivals-box cursor-pointer">
+                <% if(newArrivals.length> 0){%>
+                  <%newArrivals.forEach(product=>{%>
+                    <a href="/product/<%= product._id %>">
+                      <div class="flex flex-col bg-white/5 rounded-xl overflow-hidden group product">
+                        <div class="relative aspect-[3/4] overflow-hidden">
+                          <img
+                            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            data-alt="Black graphic t-shirt on a hanger." src=<%=product.images[0].secure_url %>
+                          />
+                        </div>
+                        <div class="flex flex-col p-4 flex-grow">
+                          <h3 class="text-white font-bold text-lg line-clamp-2 code:- text-white truncate">
+                            <%= product.productName %>>
+                          </h3>
+                          <p class="text-white/70 text-sm mt-1 mb-4 flex-grow line-clamp-2 code:- text-white truncate">
+                            <% product.shortDescription %>
+                          </p>
+                          <div class="flex items-baseline gap-2 mt-auto">
+                            <p class="text-primary font-bold text-xl">₹<%= (product.sellingPrice) %>
+                            </p>
+                            <p class="text-white/50 line-through text-sm">₹<%= product.originalPrice %>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <%})%>
+                      <%}%>
+              </div>
+
+
+
+            </section>
+            <section>
+              <h2 class="text-white text-2xl sm:text-3xl font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
+                ALL PRODUCTS
+              </h2>
+              <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 cursor-pointer">
+
+                <%if(allProducts.length> 0){%>
+                  <%allProducts.forEach((product, i)=>{%>
+                    <a href="/product/<%= product._id %>">
+                      <div class="flex flex-col bg-white/5 rounded-xl overflow-hidden group product">
+                        <img
+                          class="aspect-[3/4] w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          data-alt="Basic white t-shirt." src=<%=product.images[0].secure_url %>
+                        />
+                        <div class="p-4">
+                          <h3 class="text-white font-semibold text-white truncate">
+                            <%= product.productName %>
+                          </h3>
+                          <p class="text-white/70 text-sm mt-1 mb-4 flex-grow text-white truncate">
+                            <%= product.shortDescription %>
+                          </p>
+                          <p class="text-white/80 font-bold mt-2">₹<%= (product.sellingPrice).toLocaleString('en-IN') %>
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                    <%})%>
+                      <%}%>
+              </div>
+            </section>
+          </main>
+          <footer class="bg-black/40 border-t border-white/10 mt-16" id="footer">
+            <div class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-6 sm:px-10 py-12 text-white">
+              <div class="md:col-span-1">
+                <a class="flex items-center gap-3 text-white mb-4" href="#">
+                  <div class="size-6">
+                    <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+                    </svg>
+                  </div>
+                  <h2 class="text-white text-xl font-bold">URBANMANX</h2>
+                </a>
+                <p class="text-white/60 text-sm">
+                  Trending men's fashion for the modern world.
+                </p>
+              </div>
+              <div>
+                <h4 class="font-bold mb-4">About the Company</h4>
+                <ul class="space-y-2 text-sm">
+                  <li>
+                    <a class="text-white/60 hover:text-white" href="#">Our Story</a>
+                  </li>
+                  <li>
+                    <a class="text-white/60 hover:text-white" href="#">Careers</a>
+                  </li>
+                  <li>
+                    <a class="text-white/60 hover:text-white" href="#">Press</a>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-bold mb-4">Customer Support</h4>
+                <ul class="space-y-2 text-sm">
+                  <li>
+                    <a class="text-white/60 hover:text-white" href="#">FAQ</a>
+                  </li>
+                  <li>
+                    <a class="text-white/60 hover:text-white" href="#">Shipping</a>
+                  </li>
+                  <li>
+                    <a class="text-white/60 hover:text-white" href="#">Returns</a>
+                  </li>
+                  <li>
+                    <a class="text-white/60 hover:text-white" href="#">Contact Us</a>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-bold mb-4">Contact</h4>
+                <p class="text-white/60 text-sm">support@urbanmanx.com</p>
+                <p class="text-white/60 text-sm">+1 (234) 567-890</p>
+                <div class="flex gap-4 mt-4">
+                  <a class="text-white/60 hover:text-white" href="#"><img class="w-6 h-6"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvs-cQ7Xx9_yIki6SKQwOaLpbJrB-rm_PZRsd9D4OLvq5ZMILrFvLazDvcl5x6-Vsg5SZY9kCzM8aLuuCeISzkj5b1o_Qm50cTj4kGBY9RLgQJVbAU3ueXVBt4ScUus963imF9a3mUw7xxOFRWBKPGlnz86qB1q0Y4tbfSkUlcxS7k-zwHCMshOGufgDRxNN_EVI0d8WlXfhB2ZWRAgeQgtBuxza9Zzgsv2HWPP9FIP_YNGLxTAI6-5XDLYUW5cbcG5gnP-MqblTI"
+                      alt="instagram icon" /></a>
+                  <a class="text-white/60 hover:text-white" href="#"><img class="w-6 h-6"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb6hFk3fjCoXBCeEzngaB_mC1yp7MIO6pNUkxbszJ4o8fJ3iyCTWsWv6pykj1toJ9fHMoiNtJ1SCIHdLa2zIwzX6sY79Brvq48YLgzJVPRHYMx52AnPhZlMiE5MAKu-9JcXxLV1HZyNGo2hX8BdCnwiMur6A1kJRDWg2h1qH_xeAq85ZE7ocUTHshLtADw-G4XsH3rSrbZ_tf2ujxx2QhOVbQEGG6AaycwHItOS0D-Py7l28uZVWIlRsqcuIhiYpXUGA7aTbI614g"
+                      alt="facebook icon" /></a>
+                  <a class="text-white/60 hover:text-white" href="#"><img class="w-6 h-6"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD97w-M3vb42Vjt2uwPDuNdZt22sSJZHGPq0jDWhtwxtnBeyRBuhsjAfM4KGctfdZXa1SnVvdZaLJ2kT-AV14Lu3mE1_AkINnLw1_3_RXdN8ntTUdrfIxyNISROKtydubW1I5MDAt2d6WnAakBYlCKrp372lDsXW4wqDGtTdFd8x5qCP8TRp0RUwB30SI-_sl1Rb7vD1LxH5FrytKCbCuRLdCftdJC6crHlry7LMjXocZoVTW3UJ9qZThHL0AnOFePfHDo0ULIVbs"
+                      alt="twitter icon" /></a>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-white/10 mt-8 py-6 px-6 sm:px-10 text-center">
+              <p class="text-white/50 text-xs">
+                © 2024 URBANMANX. All rights reserved.
+              </p>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="loader-box">
+    <div class="loader-flex">
+      <div class="loader"></div>
+    </div>
+  </div>
+
+  <!-- Sidebar Overlay (Backdrop) -->
+  <!-- This simulates the open state by default -->
+  <div id="small-screen" class="fixed inset-0 bg-black/70 backdrop-blur-[2px] z-40 transition-opacity hidden z-1000 transition-all duration-[2000ms]">
+  <!-- Sidebar Component -->
+  <aside
+    class="fixed top-0 left-0 bottom-0 w-[75%] max-w-[280px] bg-[#0d0d0d] z-50 flex flex-col shadow-2xl transition-transform duration-300 sidebar-scroll">
+    <div class="flex items-center justify-between p-5 pb-2">
+      <div class="flex items-center gap-3">
+        <div class="size-8 rounded bg-primary/20 flex items-center justify-center text-primary">
+          <span class="material-symbols-outlined text-[20px] font-bold">storefront</span>
+        </div>
+      </div>
+      <button
+        id="small-x-btn"
+        class="flex size-8 cursor-pointer items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+    <div class="px-5 py-6">
+      <div class="relative group">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <span
+            class="material-symbols-outlined text-[#6b7280] group-focus-within:text-white transition-colors text-[20px]">search</span>
+        </div>
+        <input
+          class="block w-full p-2.5 pl-10 text-sm text-white bg-[#1a1a1a] border border-[#262626] rounded-xl placeholder-[#6b7280] focus:ring-1 focus:ring-primary focus:border-primary focus:outline-none transition-all"
+          placeholder="Search..." type="text" />
+      </div>
+    </div>
+    <div class="flex flex-col flex-1 px-4 gap-1 overflow-y-auto">
+      <div class="px-3 py-2">
+        <p class="text-[#6b7280] text-xs font-bold uppercase tracking-wider mb-2">Menu</p>
+      </div>
+      <a class="flex items-center gap-3 px-3 py-3 rounded-lg bg-primary text-white shadow-lg shadow-primary/20 group"
+        href="#">
+        <span class="material-symbols-outlined text-[22px]">home</span>
+        <p class="text-sm font-medium leading-normal">Home</p>
+      </a>
+      <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group"
+        href="#">
+        <span class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">grid_view</span>
+        <p class="text-sm font-medium leading-normal">Categories</p>
+      </a>
+      <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group justify-between"
+        href="#">
+        <div class="flex items-center gap-3">
+          <span
+            class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">shopping_cart</span>
+          <p class="text-sm font-medium leading-normal">Cart</p>
+        </div>
+        <span class="bg-primary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+      </a>
+      <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group"
+        href="#">
+        <span class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">person</span>
+        <p class="text-sm font-medium leading-normal">Profile</p>
+      </a>
+      <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group"
+        href="#">
+        <span class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">favorite</span>
+        <p class="text-sm font-medium leading-normal">Favorites</p>
+      </a>
+    </div>
+    <div class="p-5 border-t border-[#1a1a1a] mt-auto">
+      <button
+        class="w-full flex cursor-pointer items-center justify-center gap-2 rounded-lg h-10 px-4 bg-[#1a1a1a] hover:bg-[#262626] text-[#ef4444] text-sm font-bold leading-normal tracking-[0.015em] transition-colors">
+        <span class="material-symbols-outlined text-[18px]">logout</span>
+        <span class="truncate">Logout</span>
+      </button>
+    </div>
+  </aside>
+</div>
+  <script src="/javascripts/home.js"></script>
+</body>
+
+</html>

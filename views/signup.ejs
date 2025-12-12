@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>signup now</title>
+    <link rel="stylesheet" href="/stylesheets/signup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <p class="heading">Sign up</p>
+      <form action="/signup" method="post">
+        <label for="name">NAME</label>
+        <br />
+        <input required type="text" name="name" id="name" />
+        <br />
+        <label for="email">Email</label>
+        <br />
+        <input required type="email" name="email" id="email" />
+        <br />
+        <label for="password">Password</label>
+        <br />
+        <input required type="password" name="password" id="password" />
+        <br />
+        <button type="submit">Sign Up</button>
+      </form>
+      <p class="already">
+        Already have an account? <a href="/login">Log in</a>
+      </p>
+    </div>
+    <% if (message) { %>
+    <p class="flash-message" style="display: block">User already exist.</p>
+    <% } else { %>
+    <p class="flash-message" style="display: none">User already exist.</p>
+    <% } %>
+  </body>
+</html>

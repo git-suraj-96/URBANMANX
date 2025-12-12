@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Admin Order Management</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap"
+        rel="stylesheet" />
+    <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>     -->
+    <link rel="stylesheet" href="/stylesheets/output.css">
+
+    <style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0B1120;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #2D3748;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0ea5e9;
+        }
+
+        .loader-box {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff33;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            display: none;
+        }
+
+        .loader-flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid #fff;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased overflow-x-hidden">
+    <div class="flex h-screen w-full overflow-hidden">
+        <aside class="hidden lg:flex w-72 flex-col border-r border-border-dark bg-card-dark">
+            <div class="flex h-16 items-center px-6 border-b border-border-dark">
+                <div class="flex items-center gap-2 text-primary">
+                    <span class="material-symbols-outlined text-3xl">grid_view</span>
+                    <span class="text-xl font-bold tracking-tight text-white">AdminPanel</span>
+                </div>
+            </div>
+            <nav class="flex-1 overflow-y-auto px-4 py-6 space-y-1">
+                <div class="px-2 mb-2 text-xs font-semibold uppercase tracking-wider text-text-secondary">Order
+                    Management</div>
+                <a class="flex items-center gap-3 px-4 py-3 bg-primary/10 text-primary rounded-xl transition-colors border border-primary/20"
+                    href="/admin">
+                    <span class="material-symbols-outlined fill-1">list_alt</span>
+                    <span class="font-medium">All Orders</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 text-text-secondary hover:text-white hover:bg-white/5 rounded-xl transition-colors group"
+                    href="/admin/addNewProduct">
+                    <span class="material-symbols-outlined group-hover:text-primary transition-colors">add_circle</span>
+                    <span class="font-medium">Create New Order</span>
+                </a>
+                <div class="px-2 mt-8 mb-2 text-xs font-semibold uppercase tracking-wider text-text-secondary">Inventory
+                </div>
+                <a class="flex items-center gap-3 px-4 py-3 text-text-secondary hover:text-white hover:bg-white/5 rounded-xl transition-colors group"
+                    href="#">
+                    <span
+                        class="material-symbols-outlined group-hover:text-primary transition-colors">inventory_2</span>
+                    <span class="font-medium">All Products</span>
+                </a>
+
+            </nav>
+            <div class="p-4 border-t border-border-dark bg-background-dark/30">
+                <div class="flex items-center gap-3 rounded-xl p-2">
+                    <div class="bg-center bg-no-repeat bg-cover rounded-full h-10 w-10 shrink-0 ring-2 ring-primary/20"
+                        data-alt="User avatar placeholder"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDQOXs_WySBu6380v2dWb_6IuaGY28oqlw4szFAuw3DAG59IOiic1gS_SgSNxH0L9vEpAAMgspYcG_c1hPvSKCzp2eDDjJcpOTkAjHtFdIzq_x-js3U4C6Phj824MFUILmr5yKnRcDyY0UVtgoRMi7nt3-Q7CRDPLSA8iqseZ3aI1kqpep0g2GicpMtzh2qmhGZzug7bmXWpnaDhJnLwTOykzTODMDn01Qsm18rQ1Og1hu-zuwRnobqMJSLntvErCI-Aifvpova7Dy4");'>
+                    </div>
+                    <div class="overflow-hidden">
+                        <p class="truncate text-sm font-bold text-white">
+                            <%= admin.userName %>
+                        </p>
+                        <p class="truncate text-xs text-text-secondary">Super Admin</p>
+                    </div>
+                    <a href="/logout">
+                        <button
+                            class="ml-auto text-text-secondary hover:text-red-400 transition-colors p-2 rounded-lg hover:bg-white/5"
+                            title="Logout">
+                            <span class="material-symbols-outlined text-xl">logout</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </aside>
+        <main class="flex flex-1 flex-col h-full relative overflow-hidden bg-background-dark">
+            <header
+                class="flex h-16 w-full items-center justify-between border-b border-border-dark bg-card-dark/80 px-6 backdrop-blur-md sticky top-0 z-20">
+                <div class="flex items-center gap-4 lg:hidden">
+                    <button class="text-white">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                    <span class="text-lg font-bold text-white">All Orders</span>
+                </div>
+                <div class="hidden lg:flex w-full max-w-md items-center gap-2">
+
+                </div>
+                <div class="flex items-center gap-3">
+                    <button
+                        class="relative flex h-10 w-10 items-center justify-center rounded-full border border-border-dark bg-background-dark text-text-secondary hover:bg-white/5 hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">notifications</span>
+                        <span
+                            class="absolute top-2.5 right-2.5 h-2 w-2 rounded-full bg-primary ring-2 ring-background-dark"></span>
+                    </button>
+                </div>
+            </header>
+            <div class="flex-1 overflow-y-auto p-4 md:p-8 scroll-smooth">
+                <div class="mx-auto max-w-7xl flex flex-col gap-8">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                            <h1 class="text-3xl font-bold text-white tracking-tight">Order Management</h1>
+                            <p class="text-text-secondary mt-1">Overview of all orders and revenue metrics.</p>
+                        </div>
+                        <div class="flex gap-3">
+
+                            <button
+                                class="flex items-center gap-2 h-10 px-5 rounded-full bg-primary text-white text-sm font-semibold hover:bg-primary-hover transition-all shadow-[0_0_20px_-5px_rgba(14,165,233,0.5)]">
+                                <span class="material-symbols-outlined text-[18px]">add</span>
+                                Create Order
+                            </button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                        <div
+                            class="relative overflow-hidden rounded-2xl bg-card-dark p-6 border border-border-dark group hover:border-primary/50 transition-colors">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-text-secondary">Total Revenue</p>
+                                    <h3 class="mt-2 text-3xl font-bold text-white">₹<%= totalRev.toLocaleString('en-IN')
+                                            %>
+                                    </h3>
+                                </div>
+                                <div
+                                    class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary ring-1 ring-primary/20">
+                                    <span class="material-symbols-outlined">attach_money</span>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center gap-2 text-sm">
+                                <span
+                                    class="flex items-center gap-0.5 font-medium text-emerald-400 bg-emerald-400/10 px-1.5 py-0.5 rounded">
+                                    <span class="material-symbols-outlined text-[14px]">trending_up</span>
+                                    8%
+                                </span>
+                                <span class="text-text-secondary">vs last month</span>
+                            </div>
+                        </div>
+                        <div
+                            class="relative overflow-hidden rounded-2xl bg-card-dark p-6 border border-border-dark group hover:border-orange-500/50 transition-colors">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-text-secondary">Pending Orders</p>
+                                    <h3 class="mt-2 text-3xl font-bold text-white">
+                                        <%= pendingOrders.toLocaleString('en-IN') %>
+                                    </h3>
+                                </div>
+                                <div
+                                    class="flex h-12 w-12 items-center justify-center rounded-full bg-orange-500/10 text-orange-500 ring-1 ring-orange-500/20">
+                                    <span class="material-symbols-outlined">pending_actions</span>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center gap-2 text-sm">
+                                <span
+                                    class="flex items-center gap-0.5 font-medium text-text-secondary bg-white/5 px-1.5 py-0.5 rounded">
+                                    <span>-</span>
+                                    Stable
+                                </span>
+                                <span class="text-text-secondary">vs last week</span>
+                            </div>
+                        </div>
+                        <div
+                            class="relative overflow-hidden rounded-2xl bg-card-dark p-6 border border-border-dark group hover:border-emerald-500/50 transition-colors">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-text-secondary">Total Orders</p>
+                                    <h3 class="mt-2 text-3xl font-bold text-white">
+                                        <%= (adminOrder.length).toLocaleString('en-IN') %>
+                                    </h3>
+                                </div>
+                                <div
+                                    class="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-500 ring-1 ring-emerald-500/20">
+                                    <span class="material-symbols-outlined">shopping_cart</span>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center gap-2 text-sm">
+                                <span
+                                    class="flex items-center gap-0.5 font-medium text-emerald-400 bg-emerald-400/10 px-1.5 py-0.5 rounded">
+                                    <span class="material-symbols-outlined text-[14px]">trending_up</span>
+                                    12%
+                                </span>
+                                <span class="text-text-secondary">vs last month</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rounded-2xl bg-card-dark p-4 md:p-5 border border-border-dark">
+                        <div class="flex flex-col xl:flex-row gap-4 justify-between">
+                            <div class="flex flex-1 flex-col md:flex-row gap-4">
+                                <div class="relative flex-1 min-w-[200px]">
+                                    <span
+                                        class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-text-secondary">search</span>
+                                    <input
+                                        class="h-12 w-full rounded-full border border-border-dark bg-background-dark pl-11 pr-4 text-white placeholder-text-secondary focus:border-primary focus:ring-0 transition-colors bg-black"
+                                        placeholder="Search order ID or customer..." type="text" />
+                                </div>
+                                <div class="flex gap-4 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
+                                    <select
+                                        class="h-12 min-w-[140px] rounded-full border border-border-dark bg-background-dark px-4 text-white focus:border-primary focus:ring-0 transition-colors bg-black">
+                                        <option value="">Status: All</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="shipped">Shipped</option>
+                                        <option value="delivered">Delivered</option>
+                                        <option value="cancelled">Cancelled</option>
+                                    </select>
+                                    <select
+                                        class="h-12 min-w-[140px] rounded-full border border-border-dark bg-background-dark px-4 text-white focus:border-primary focus:ring-0 transition-colors bg-black">
+                                        <option value="">Payment: All</option>
+                                        <option value="paid">Paid</option>
+                                        <option value="cod">COD</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <button
+                                    class="h-12 px-6 rounded-full border border-border-dark text-text-secondary font-medium hover:text-white hover:bg-white/5 transition-colors whitespace-nowrap">
+                                    Apply Filters
+                                </button>
+                                <button
+                                    class="h-12 px-6 rounded-full border border-border-dark text-text-secondary font-medium hover:text-white hover:bg-white/5 transition-colors whitespace-nowrap">
+                                    Clear Filters
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--  tablse starts from here -->
+                    <div
+                        class="rounded-2xl bg-card-dark border border-border-dark overflow-hidden flex flex-col flex-1 shadow-xl shadow-black/20">
+                        <div class="overflow-x-auto h-[40rem]">
+                            <table class="w-full text-left text-sm">
+                                <thead
+                                    class="border-b border-border-dark bg-background-dark/80 text-text-secondary uppercase text-xs font-semibold tracking-wider">
+                                    <tr>
+                                        <th class="px-6 py-4" scope="col">Order ID</th>
+                                        <th class="px-6 py-4" scope="col">Customer</th>
+                                        <th class="px-6 py-4" scope="col">Date</th>
+                                        <th class="px-6 py-4" scope="col">Amount</th>
+                                        <th class="px-6 py-4" scope="col">Status</th>
+                                        <th class="px-6 py-4" scope="col">Payment</th>
+                                        <th class="px-6 py-4 text-right" scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-border-dark text-white font-medium ">
+                                    <!-- order -->
+                                    <%if(adminOrder.length> 0){%>
+                                        <%adminOrder.forEach(order=> {%>
+                                            <tr class="group hover:bg-white/[0.03] transition-colors parent">
+
+                                                <td class="hidden">
+                                                    <p id="image-url" class="image-url ">
+                                                        <%= order.products[0].product.images[0].secure_url %>
+                                                    </p>
+                                                    <p class="customer-name">
+                                                        <%= order.shippingAddress.userFullName %>
+                                                    </p>
+                                                    <p class="customer-mobile">
+                                                        <%= order.shippingAddress.userMobile %>
+                                                    </p>
+                                                    <p class="location">
+                                                        <%= order.shippingAddress.userLocation %>
+                                                    </p>
+                                                    <p class="size ">
+                                                        <%= order.products[0].size %>
+                                                    </p>
+                                                    <p class="item-name">
+                                                        <%= order.products[0].product.productName %>
+                                                    </p>
+                                                </td>
+
+                                                <td id="order-id" class="px-6 py-4 font-mono text-primary/90">#<%=
+                                                        order.orderId %>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <div class="flex items-center gap-3">
+                                                        <div
+                                                            class="h-8 w-8 rounded-full bg-indigo-500 flex items-center justify-center text-xs font-bold ring-1 ring-indigo-400/50">
+                                                            <%= order.user.userName[0] %>
+                                                        </div>
+                                                        <div>
+                                                            <div class="font-bold" id="user-name">
+                                                                <%= order.user.userName %>
+                                                            </div>
+                                                            <div class="text-xs text-text-secondary font-normal"
+                                                                id="user-email">
+                                                                <%= order.user.email %>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 text-text-secondary" id="order-date">
+                                                    <%= new Date(order.createdAt).toLocaleDateString('en-IN') %>
+                                                </td>
+                                                <td class="px-6 py-4" id="order-price">₹<%=
+                                                        (order.products[0].product.sellingPrice).toLocaleString('en-IN')
+                                                        %>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <span id="order-status"
+                                                        class="inline-flex items-center gap-1.5 rounded-full bg-blue-500/10 px-3 py-1 text-xs font-bold text-[#4cdf20] border border-blue-500/20">
+                                                        <span class="h-1.5 w-1.5 rounded-full bg-[#4cdf20]"></span>
+                                                        <%= order.orderStatus %>
+                                                    </span>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <%if(order.paymentMethod==="COD") {%>
+                                                        <div class="flex items-center gap-2">
+                                                            <span
+                                                                class="material-symbols-outlined text-text-secondary text-[20px]">payments</span>
+                                                            <span class="text-text-secondary payment-method">COD</span>
+                                                        </div>
+                                                        <div>
+                                                            <%}else{%>
+                                                                <div class="flex items-center gap-2">
+                                                                    <span
+                                                                        class="material-symbols-outlined text-text-secondary text-[20px]">account_balance_wallet</span>
+                                                                    <span
+                                                                        class="text-text-secondary payment-method">PAID</span>
+                                                                </div>
+                                                                <%}%>
+                                                </td>
+                                                <td class="px-6 py-4 text-right">
+                                                    <button id="eye-btn" data-order="<%= order._id %>"
+                                                        class="text-text-secondary hover:text-primary transition-colors p-2 rounded-full hover:bg-primary/10">
+                                                        <span class="material-symbols-outlined">visibility</span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <%})%>
+                                                <%}else{%>
+
+                                                    <%}%>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div
+                            class="flex items-center justify-between border-t border-border-dark bg-background-dark/50 p-4">
+                            <span class="text-sm text-text-secondary">Showing <span
+                                    class="font-medium text-white">1-5</span> of <span
+                                    class="font-medium text-white">145</span> results</span>
+                            <div class="flex gap-2">
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full border border-border-dark bg-transparent text-text-secondary hover:bg-white/5 hover:text-white disabled:opacity-50">
+                                    <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+                                </button>
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-bold text-white shadow-lg shadow-primary/30">1</button>
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full border border-border-dark bg-transparent text-sm font-medium text-text-secondary hover:bg-white/5 hover:text-white">2</button>
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full border border-border-dark bg-transparent text-sm font-medium text-text-secondary hover:bg-white/5 hover:text-white">3</button>
+                                <span class="flex h-8 w-8 items-center justify-center text-text-secondary">...</span>
+                                <button
+                                    class="flex h-8 w-8 items-center justify-center rounded-full border border-border-dark bg-transparent text-text-secondary hover:bg-white/5 hover:text-white">
+                                    <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Main Layout Container -->
+    <div id="order-detail"
+        class="p-d fixed top-0 overflow-scroll h-[100vh] p-[10px] right-0 w-full bg-[oklch(0.86 0 0 / 0.11)] z-30 hidden">
+        <h2 class="absolute right-0 text-white top-0 right-[20px] text-[45px] cursor-pointer" id="x-btn">X</h2>
+        <div class="w-full max-w-[1000px] flex flex-col gap-6 float-right">
+            <!-- Order Details Card -->
+            <!-- Using a slightly lighter dark background for the card to separate it from the main page background -->
+            <div
+                class="bg-black dark:bg-card-dark rounded-xl shadow-2xl overflow-hidden border border-gray-200 dark:border-[#2f3b2c] flex flex-col">
+                <!-- Card Header: Title and Order ID -->
+                <div
+                    class="px-6 py-8 sm:px-10 border-b border-gray-100 dark:border-[#2f3b2c] flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <!-- Sky blue heading as requested -->
+                        <h2 class="text-primary text-sm font-bold uppercase tracking-widest mb-1">Order Details</h2>
+                        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight"
+                            id="o-d-o-id">Order
+                            #12345</h1>
+                    </div>
+                    <!-- Status Badge -->
+                    <div class="flex items-center">
+                        <span id="o-d-order-status"
+                            
+                            class="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-bold bg-primary/20 text-[#4cdf20] border border-primary/30">
+                            Processing
+                        </span>
+                    </div>
+                </div>
+                <!-- Product Section -->
+                <div
+                    class="px-6 py-6 sm:px-10 border-b border-gray-100 dark:border-[#2f3b2c] bg-gray-50/50 dark:bg-[#1a2317]">
+                    <div class="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
+                        <!-- Product Image -->
+                        <div class="shrink-0">
+                            <div id="o-d-image"
+                                class="h-24 w-24 sm:h-32 sm:w-32 rounded-lg bg-gray-800 bg-center bg-cover border border-gray-700 shadow-sm"
+                                data-alt="Black wireless headphones on a dark background"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAd3dzvFH5JhkxAsAG2T9SVz5bC18Jao3SGFIvJmCJ9mEjszRTcOljo5NpuDKxNzHRdPGseC3EivYCktEhRTIfpjXJvEuibbiI6KfNfGwJqq2IxBMgVvYPR0xDuw9YRtNEmSui5m0qKrcW_jR6GilcbN6PayyayDG0KLyCXJLdRNGvO-FpAOchdVpdTk8ju6H3p1NL0i-zmJK_kJHV-NVV4P6Eiyyxh6INbjaDYRUnSIzzHlGPEBRXxHckf01UDi6rX1It_yPhJ47M');">
+                            </div>
+                        </div>
+                        <!-- Product Details -->
+                        <div class="flex-1 w-full flex flex-col justify-center min-h-[128px]">
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                                <div>
+                                    <h3 id="o-d-name" class="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                                        Wireless
+                                        Noise-Canceling Headphones</h3>
+                                    <div class="flex flex-wrap gap-4 text-sm">
+                                        <div class="flex items-center gap-1">
+                                            <!-- Sky blue label -->
+                                            <span class="text-primary font-medium">Qty:</span>
+                                            <span class="text-gray-600 dark:text-gray-300">1</span>
+                                        </div>
+                                        <div class="w-px h-4 bg-gray-300 dark:bg-gray-600"></div>
+                                        <div class="flex items-center gap-1">
+                                            <!-- Sky blue label -->
+                                            <span class="text-primary font-medium">Size:</span>
+                                            <span class="text-gray-600 dark:text-gray-300" id="o-d-size">Standard
+                                                (M)</span>
+                                        </div>
+                                        <div class="w-px h-4 bg-gray-300 dark:bg-gray-600"></div>
+                                        <div class="flex items-center gap-1">
+                                            <!-- Sky blue label -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-left md:text-right">
+                                    <p class="text-2xl font-bold text-gray-900 dark:text-white" id="o-d-price">$299.00
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Information Grid: Order Info & User Info -->
+                <div class="p-6 sm:px-10 sm:py-8 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+                    <!-- Column 1: Order Information -->
+                    <div class="flex flex-col gap-6">
+                        <h4
+                            class="text-lg font-bold text-gray-900 dark:text-white border-b border-gray-200 dark:border-[#2f3b2c] pb-3">
+                            Order Information
+                        </h4>
+                        <div class="grid grid-cols-[120px_1fr] gap-y-5 items-baseline">
+                            <p class="text-primary text-sm font-semibold">Date Placed</p>
+                            <p class="text-gray-700 dark:text-gray-200 font-medium" id="o-d-date">Oct 24, 2023</p>
+                            <p class="text-primary text-sm font-semibold">Payment</p>
+                            <p class="text-gray-700 dark:text-gray-200 font-medium" id="o-d-payment">Credit Card (Visa
+                                **4242)</p>
+                            <p class="text-primary text-sm font-semibold">Order Status</p>
+                            <p class="text-[#4cdf20] font-bold" id="o-d-status">Processing</p>
+                            <p class="text-primary text-sm font-semibold">Tracking ID</p>
+                            <p class="text-gray-700 dark:text-gray-200 font-medium font-mono" id="o-d-tracking">
+                                TRK-882930192</p>
+                        </div>
+                    </div>
+                    <!-- Column 2: User Details -->
+                    <div class="flex flex-col gap-6">
+                        <h4
+                            class="text-lg font-bold text-gray-900 dark:text-white border-b border-gray-200 dark:border-[#2f3b2c] pb-3">
+                            Customer Details
+                        </h4>
+                        <div class="grid grid-cols-[120px_1fr] gap-y-5 items-baseline">
+                            <p class="text-primary text-sm font-semibold">Customer</p>
+                            <p class="text-gray-700 dark:text-gray-200 font-medium" id="o-d-customer-name">Alex Morgan
+                            </p>
+                            <p class="text-primary text-sm font-semibold">Email</p>
+                            <p class="text-gray-700 dark:text-gray-200 font-medium" id="o-d-email">
+                                alex.morgan@example.com
+                            </p>
+                            <p class="text-primary text-sm font-semibold">Phone</p>
+                            <p class="text-gray-700 dark:text-gray-200 font-medium" id="o-d-phone">+1 (555) 012-3456</p>
+                            <p class="text-primary text-sm font-semibold">Shipping To</p>
+                            <div class="text-gray-700 dark:text-gray-200 font-medium leading-relaxed">
+                                <p id="o-d-location">123 Innovation Drive, Suite 400
+                                    San Francisco, CA 94103
+                                    United States</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer: Actions -->
+                <div
+                    class="bg-gray-50 dark:bg-[#151c12] p-6 sm:px-10 border-t border-gray-200 dark:border-[#2f3b2c] mt-auto">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                        <!-- Status Dropdown Group -->
+                        <div class="w-full md:w-auto flex flex-col sm:flex-row items-center gap-3">
+                            <label class="text-primary text-sm font-bold whitespace-nowrap" for="status-update">
+                                Update Order Status:
+                            </label>
+                            <div class="relative w-full sm:w-64">
+                                <!-- Custom Select Styling -->
+                                <select
+                                    class="w-full appearance-none bg-white dark:bg-[#1c2619] border border-gray-300 dark:border-[#2f3b2c] text-gray-900 dark:text-white py-3 pl-4 pr-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow cursor-pointer"
+                                    id="status-update" name="status">
+                                    <option value="pending">Pending</option>
+                                    <option selected="" value="processing">Processing</option>
+                                    <option value="shipped">Shipped</option>
+                                    <option value="delivered">Delivered</option>
+                                    <option value="cancelled">Cancelled</option>
+                                </select>
+                                <!-- Custom Arrow for Select -->
+                                <div
+                                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-primary">
+                                    <svg class="fill-current h-4 w-4" viewbox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z">
+                                        </path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Action Button -->
+                        <!-- Using Theme Primary Color for the Button as required -->
+                        <button id="status-update-btn"
+                            class="w-full md:w-auto bg-[#4cdf20] hover:bg-[#3ec71b] text-background-dark font-bold py-3 px-8 rounded-full shadow-lg shadow-primary/20 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 text-center">
+                            Update Status
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="loader-box">
+        <div class="loader-flex">
+            <div class="loader"></div>
+        </div>
+    </div>
+
+
+
+    <script src="/javascripts/admin-dash.js"></script>
+</body>
+
+</html>

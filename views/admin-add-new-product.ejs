@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Add New Product Form</title>
+    <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script> -->
+     <link rel="stylesheet" href="/stylesheets/output.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .flash-message {
+        transform: translate(-50%, -50%);
+        z-index: 10;
+        position: fixed;
+        top: 40px;
+        left: 50%;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: green;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        display: none;
+      }
+      .loader-box {
+        width: 100%;
+        height: 100%;
+        background-color: #ffffff33;
+        position: fixed;
+        top: 0;
+        z-index: 9;
+        display: none;
+      }
+      .loader-flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+      }
+      .loader {
+        width: 48px;
+        height: 48px;
+        border: 5px solid #fff;
+        border-bottom-color: transparent;
+        border-radius: 50%;
+        display: inline-block;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+      }
+
+      @keyframes rotation {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-background-light dark:bg-background-dark font-display">
+    <div
+      class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden"
+    >
+      <div class="flex flex-row min-h-screen">
+        <!-- SideNavBar -->
+        <div class="flex flex-col w-64 bg-[#111718] p-4 shrink-0">
+          <div class="flex flex-col gap-52 fixed h-full">
+            <div class="flex flex-col gap-4">
+              <div class="flex items-center gap-3 p-2">
+                <div
+                  class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                  data-alt="Admin user avatar"
+                  style="
+                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC2apVIexFPU-gtdWkA3v_V7La8mIXLm0Ul7k3zXLmFlbP-Se4_4t-fCYBop9PPGuxGsd9WI0U_rjD7_eHIA3Un4OvuftV2jwUdwCfts-JSHs_91xir50P8cH4o96cfnWqRAShjP_XkgDDy8OmV2g3HDCafm86PCh79zkwUp_gVHq1THBitgtsBFVC7FiktjaG72kqq7FQnmttzQ6btClbDE7T7nmqaIpJaIAYHG_Qxq1bCMP3FObwRynwBbyWtSDvbVsvLV4aj1cAp');
+                  "
+                ></div>
+                <div class="flex flex-col">
+                  <h1 class="text-white text-base font-medium leading-normal">
+                    <%= admin.userName %>
+                  </h1>
+                  <p class="text-[#9db4b9] text-sm font-normal leading-normal">
+                    Administrator
+                  </p>
+                </div>
+              </div>
+              <div class="flex flex-col gap-2 mt-4">
+                <a
+                  class="flex items-center gap-3 px-3 py-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                  href="#"
+                >
+                  <span class="material-symbols-outlined">dashboard</span>
+                  <p class="text-sm font-medium leading-normal">Dashboard</p>
+                </a>
+                <a
+                  class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 text-primary"
+                  href="#"
+                >
+                  <span
+                    class="material-symbols-outlined"
+                    style="font-variation-settings: 'FILL' 1"
+                    >inventory_2</span
+                  >
+                  <p class="text-sm font-medium leading-normal">Products</p>
+                </a>
+                <a
+                  class="flex items-center gap-3 px-3 py-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                  href="#"
+                >
+                  <span class="material-symbols-outlined">receipt_long</span>
+                  <p class="text-sm font-medium leading-normal">Orders</p>
+                </a>
+                <a
+                  class="flex items-center gap-3 px-3 py-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                  href="#"
+                >
+                  <span class="material-symbols-outlined">group</span>
+                  <p class="text-sm font-medium leading-normal">Customers</p>
+                </a>
+                <a
+                  class="flex items-center gap-3 px-3 py-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                  href="#"
+                >
+                  <span class="material-symbols-outlined">pie_chart</span>
+                  <p class="text-sm font-medium leading-normal">Analytics</p>
+                </a>
+              </div>
+            </div>
+            <div class="flex flex-col gap-1">
+              <a
+                class="flex items-center gap-3 px-3 py-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                href="#"
+              >
+                <span class="material-symbols-outlined">settings</span>
+                <p class="text-sm font-medium leading-normal">Settings</p>
+              </a>
+              <a
+                class="flex items-center gap-3 px-3 py-2 text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                href="/logout"
+              >
+                <span class="material-symbols-outlined">logout</span>
+                <p class="text-sm font-medium leading-normal">Logout</p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Main Content -->
+        <main class="flex-1 p-8">
+          <div class="max-w-7xl mx-auto">
+            <!-- Breadcrumbs -->
+            <div class="flex flex-wrap gap-2 mb-4">
+              <a
+                class="text-[#9db4b9] text-sm font-medium leading-normal hover:text-white"
+                href="#"
+                >Dashboard</a
+              >
+              <span class="text-[#9db4b9] text-sm font-medium leading-normal"
+                >/</span
+              >
+              <a
+                class="text-[#9db4b9] text-sm font-medium leading-normal hover:text-white"
+                href="#"
+                >Products</a
+              >
+              <span class="text-[#9db4b9] text-sm font-medium leading-normal"
+                >/</span
+              >
+              <span class="text-white text-sm font-medium leading-normal"
+                >Add New</span
+              >
+            </div>
+            <!-- PageHeading -->
+            <div class="flex flex-wrap justify-between gap-3 mb-8 items-center">
+              <p
+                class="text-white text-4xl font-black leading-tight tracking-[-0.033em]"
+              >
+                Add New Product
+              </p>
+            </div>
+
+            <!-- Two-Column Layout -->
+            <!-- start form -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <!-- Left Column -->
+              <div class="lg:col-span-2 flex flex-col gap-8">
+                <!-- Basic Info Section -->
+                <div class="bg-[#1c2527]/50 rounded-xl p-6">
+                  <h2
+                    class="text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-6"
+                  >
+                    Basic Info
+                  </h2>
+                  <div class="flex flex-col gap-6">
+                    <!-- Product Name -->
+                    <label class="flex flex-col">
+                      <p
+                        class="text-white text-base font-medium leading-normal pb-2"
+                      >
+                        Product Name
+                      </p>
+                      <input
+                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#3b4f54] bg-[#111718] h-12 placeholder:text-[#9db4b9] px-4 text-base font-normal leading-normal"
+                        placeholder="Enter product name"
+                        value=""
+                        id="productname"
+                      />
+                    </label>
+                    <!-- Short Description -->
+                    <label class="flex flex-col">
+                      <p
+                        class="text-white text-base font-medium leading-normal pb-2"
+                      >
+                        Short Description
+                      </p>
+                      <textarea
+                        class="form-textarea flex w-full min-w-0 flex-1 resize-y overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#3b4f54] bg-[#111718] h-24 placeholder:text-[#9db4b9] p-4 text-base font-normal leading-normal"
+                        placeholder="A brief summary of the product."
+                        id="short-desc"
+                      ></textarea>
+                    </label>
+                    <!-- Long Description -->
+                    <label class="flex flex-col">
+                      <p
+                        class="text-white text-base font-medium leading-normal pb-2"
+                      >
+                        Long Description
+                      </p>
+                      <div
+                        class="rounded-lg border border-[#3b4f54] bg-[#111718]"
+                      >
+                        <div
+                          class="p-2 border-b border-[#3b4f54] flex items-center gap-2 text-[#9db4b9]"
+                        >
+                          <span class="material-symbols-outlined text-lg"
+                            >format_bold</span
+                          >
+                          <span class="material-symbols-outlined text-lg"
+                            >format_italic</span
+                          >
+                          <span class="material-symbols-outlined text-lg"
+                            >format_underlined</span
+                          >
+                          <span class="material-symbols-outlined text-lg"
+                            >format_list_bulleted</span
+                          >
+                          <span class="material-symbols-outlined text-lg"
+                            >format_list_numbered</span
+                          >
+                          <span class="material-symbols-outlined text-lg"
+                            >link</span
+                          >
+                        </div>
+                        <textarea
+                          class="form-textarea w-full resize-y rounded-b-lg text-white focus:outline-0 bg-transparent h-40 placeholder:text-[#9db4b9] p-4 text-base font-normal leading-normal"
+                          placeholder="Describe your product in detail."
+                          id="long-desc"
+                        ></textarea>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <!-- Product Images Section -->
+                <div
+                  class="bg-[#1c2527]/50 rounded-xl p-6 flex flex-col gap-12"
+                >
+                  <h2
+                    class="text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-6"
+                  >
+                    Product Images
+                  </h2>
+
+                  <!-- Upload  image file -->
+                  <div>
+                    <p
+                      class="text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-6"
+                    >
+                      Upload Multiple Image
+                    </p>
+                    <div
+                      class="flex flex-col items-center justify-center p-8 border-2 border-dashed border-[#3b4f54] rounded-lg text-center mt-0 relative"
+                    >
+                      <span
+                        class="material-symbols-outlined text-5xl text-[#9db4b9] mb-4"
+                        >cloud_upload</span
+                      >
+                      <p class="text-white text-lg font-medium">
+                        Drag &amp; drop files here
+                      </p>
+                      <p class="text-[#9db4b9] text-sm">or click to browse</p>
+                      <input
+                        class="absolute inset-0 w-full h-[100%] opacity-0 cursor-pointer"
+                        type="file"
+                        multiple
+                        required
+                        id="images"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <!-- Variants & Specifications -->
+                <div class="bg-[#1c2527]/50 rounded-xl p-6">
+                  <h2
+                    class="text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-6"
+                  >
+                    Variants &amp; Specifications
+                  </h2>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Sizes -->
+                    <label class="flex flex-col">
+                      <p
+                        class="text-white text-base font-medium leading-normal pb-2"
+                      >
+                        Sizes
+                      </p>
+                      <input
+                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#3b4f54] bg-[#111718] h-12 placeholder:text-[#9db4b9] px-4 text-base font-normal leading-normal"
+                        placeholder="S, M, L, XL (comma separated)"
+                        value=""
+                        id="size"
+                      />
+                    </label>
+                    <!-- Colors -->
+                    <label class="flex flex-col">
+                      <p
+                        class="text-white text-base font-medium leading-normal pb-2"
+                      >
+                        Colors
+                      </p>
+                      <input
+                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#3b4f54] bg-[#111718] h-12 placeholder:text-[#9db4b9] px-4 text-base font-normal leading-normal"
+                        placeholder="Red, Blue, Green (comma separated)"
+                        value=""
+                        id="color"
+                      />
+                    </label>
+                    <!-- Fabric -->
+                    <label class="flex flex-col">
+                      <p
+                        class="text-white text-base font-medium leading-normal pb-2"
+                      >
+                        Fabric
+                      </p>
+                      <input
+                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#3b4f54] bg-[#111718] h-12 placeholder:text-[#9db4b9] px-4 text-base font-normal leading-normal"
+                        placeholder="e.g., Cotton, Polyester"
+                        value=""
+                        id="fabric"
+                      />
+                    </label>
+                    <!-- Fit Type -->
+                    <label class="flex flex-col">
+                      <p
+                        class="text-white text-base font-medium leading-normal pb-2"
+                      >
+                        Fit Type
+                      </p>
+                      <select
+                        class="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#3b4f54] bg-[#111718] h-12 placeholder:text-[#9db4b9] px-4 text-base font-normal leading-normal"
+                        id="fit-type"
+                      >
+                        <option>Regular Fit</option>
+                        <option>Slim Fit</option>
+                        <option>Loose Fit</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!-- Right Column -->
+              <div class="lg:col-span-1 flex flex-col gap-8">
+                <!-- Organization Section -->
+                <div class="bg-[#1c2527]/50 rounded-xl p-6">
+                  <h2
+                    class="text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-6"
+                  >
+                    Organization
+                  </h2>
+                  <div class="flex flex-col gap-6">
+                    <!-- Main Category -->
+                    <label class="flex flex-col">
+                      <p
+                        class="text-white text-base font-medium leading-normal pb-2"
+                      >
+                        Category
+                      </p>
+                      <select
+                        id="category"
+                        class="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#3b4f54] bg-[#111718] h-12 placeholder:text-[#9db4b9] px-4 text-base font-normal leading-normal"
+                      >
+                        <option>Select a category</option>
+                        <option>TSHIRT</option>
+                        <option>SHIRT</option>
+                        <option>CARGO</option>
+                        <option>BOTTOMS</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+                <!-- Pricing Section -->
+                <div class="bg-[#1c2527]/50 rounded-xl p-6">
+                  <h2
+                    class="text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-6"
+                  >
+                    Pricing
+                  </h2>
+                  <div class="grid grid-cols-2 gap-4">
+                    <label class="flex flex-col">
+                      <p
+                        class="text-white text-base font-medium leading-normal pb-2"
+                      >
+                        Original Price
+                      </p>
+                      <input
+                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#3b4f54] bg-[#111718] h-12 placeholder:text-[#9db4b9] px-4 text-base font-normal leading-normal"
+                        placeholder="$0.00"
+                        type="number"
+                        value=""
+                        id="original-price"
+                      />
+                    </label>
+                    <label class="flex flex-col">
+                      <p
+                        class="text-white text-base font-medium leading-normal pb-2"
+                      >
+                        Selling Price
+                      </p>
+                      <input
+                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#3b4f54] bg-[#111718] h-12 placeholder:text-[#9db4b9] px-4 text-base font-normal leading-normal"
+                        placeholder="$0.00"
+                        type="number"
+                        value=""
+                        id="selling-price"
+                      />
+                    </label>
+                  </div>
+                </div>
+                <!-- Inventory Section -->
+                <div class="bg-[#1c2527]/50 rounded-xl p-6">
+                  <h2
+                    class="text-white text-xl font-bold leading-tight tracking-[-0.015em] mb-6"
+                  >
+                    Inventory
+                  </h2>
+                  <div class="grid grid-cols-2 gap-4">
+                    <label class="flex flex-col">
+                      <p
+                        class="text-white text-base font-medium leading-normal pb-2"
+                      >
+                        Stock Quantity
+                      </p>
+                      <input
+                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#3b4f54] bg-[#111718] h-12 placeholder:text-[#9db4b9] px-4 text-base font-normal leading-normal"
+                        placeholder="0"
+                        type="number"
+                        value=""
+                        id="stock-qty"
+                      />
+                    </label>
+                  </div>
+                  <label class="flex flex-col mt-6">
+                    <p
+                      class="text-white text-base font-medium leading-normal pb-2"
+                    >
+                      Stock Status
+                    </p>
+                    <select
+                      id="stock-status"
+                      class="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#3b4f54] bg-[#111718] h-12 placeholder:text-[#9db4b9] px-4 text-base font-normal leading-normal"
+                    >
+                      <option>In Stock</option>
+                      <option>Out of Stock</option>
+                      <option>Low Stock</option>
+                    </select>
+                  </label>
+                </div>
+                <!-- Actions -->
+                <div class="bg-[#1c2527]/50 rounded-xl p-6">
+                  <div class="flex flex-col gap-4">
+                    <button
+                      type="button"
+                      class="flex items-center justify-center h-12 w-full bg-primary text-black text-base font-bold rounded-lg hover:bg-primary/90 transition-colors"
+                      id="upload-btn"
+                    >
+                      Upload Product
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end form -->
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <p id="flash-message" class="flash-message">Uploaded succesfully!</p>
+    <div class="loader-box">
+      <div class="loader-flex"><span class="loader"></span></div>
+    </div>
+    <script src="/javascripts/admin-add-new-product.js"></script>
+  </body>
+</html>

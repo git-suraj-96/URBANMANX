@@ -175,36 +175,14 @@
             <div class="flex flex-col gap-6 lg:order-2 cursor-pointer">
               <!-- Option-1 -->
               <div id="card-box"
-                class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-sm border border-gray-800 hidden">
+                class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-sm border border-gray-800 hidden bg-green-200">
                 <h2
                   class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] pb-4 border-b border-gray-200 dark:border-gray-700">
-                  Payment Details
+                  Pay With Card or more...
                 </h2>
                 <div class="flex flex-col gap-4 mt-4">
-                  <div>
-                    <label class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 block"
-                      for="card-number">Card Number</label>
-                    <input
-                      class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:border-primary focus:ring-primary/50 text-sm"
-                      id="card-number" type="text" placeholder="0000 0000 0000 0000" />
-                  </div>
-                  <div class="grid grid-cols-2 gap-4">
-                    <div>
-                      <label class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 block"
-                        for="expiry-date">Expiry Date</label>
-                      <input
-                        class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:border-primary focus:ring-primary/50 text-sm"
-                        id="expiry-date" type="text" placeholder="MM/YY" />
-                    </div>
-                    <div>
-                      <label class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 block"
-                        for="cvv">CVV</label>
-                      <input
-                        class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:border-primary focus:ring-primary/50 text-sm"
-                        id="cvv" type="text" placeholder="123" />
-                    </div>
-                  </div>
                   <button
+                    id="card-pay-btn"
                     class="w-full flex items-center justify-center rounded-lg h-12 bg-primary text-white text-base font-bold leading-normal tracking-wide mt-4 hover:bg-primary/90 transition-colors cursor-pointer">
                     Pay ₹<%= total %>
                   </button>

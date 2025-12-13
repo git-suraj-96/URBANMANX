@@ -10,7 +10,8 @@ const menuBtn = document.getElementById("menu");
 const smallScreen = document.getElementById("small-screen");
 const smallXbtn = document.getElementById('small-x-btn');
 const smallScreenSearch = document.getElementById("smaal-screen-search");
-const smallScreenSearchBtn  = document.getElementById("small-screen-search-btn");
+const smallScreenSearchBtn  = document.querySelector(".small-btn-search-ka");
+const smallSearch = document.querySelector(".small-search");
 const categoryOptionBtn  = document.getElementById('category-option-btn');
 const categoryOption  = document.getElementById('category-option');
 
@@ -132,7 +133,12 @@ searchBtn.addEventListener('click', () => {
 });
 
 smallScreenSearchBtn.addEventListener("click", ()=>{
-  console.log("Hello Suraj!");
+  if(!smallSearch.value){
+    return;
+  }
+  smallScreenSearchBtn.className += "product";
+  callSerach(smallSearch.value);
+  smallSearch.value = "";
 });
 
 function callSerach(query) {

@@ -1237,6 +1237,9 @@
       background-color: color-mix(in oklab, var(--color-primary) 20%, transparent);
     }
   }
+  .bg-red-400 {
+    background-color: var(--color-red-400);
+  }
   .bg-slate-200 {
     background-color: var(--color-slate-200);
   }

@@ -31,6 +31,23 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+// It will send email using gmail.
+const nodemailer = require("nodemailer");
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
+});
+
+// transporter.verify((err) => {
+//   if (err) console.log("SMTP ERROR:", err);
+//   else console.log("SMTP READY");
+// });
+
+
+
 // ----------- User routes ------------------
 /* GET home page. */
 router.get("/", isLoggedIn, async function (req, res) {
@@ -52,8 +69,6 @@ router.get("/", isLoggedIn, async function (req, res) {
 
   let cart = user.cart;
 
-  // console.log(allProducts)
-  // console.log(newArrivals);
 
   res.render("home", { allProducts, newArrivals, cart });
 });
@@ -424,13 +439,14 @@ router.post('/placeOrder', isLoggedIn, async (req, res) => {
 
     // ❌ forEach(async...)  → WRONG
     // ✅ use for...of (works sequentially)
+    let createdOrder;
     for (const item of cartItems) {
       const obj = {
         product: item.productId._id,
         quantity: 1,
         size: item.size
       };
-      const createdOrder = await orderModel.create({
+      createdOrder = await orderModel.create({
         user: user._id,
         products: obj,
         shippingAddress: shippingAddress,
@@ -456,6 +472,9 @@ router.post('/placeOrder', isLoggedIn, async (req, res) => {
       }
 
       await user.save();
+
+      sendMail(user.email, `✅ Your Order is Confirmed – #${createdOrder.orderId}`, "Delivery Expected Soon!" );
+      sendMail("surajara96@gmail.com", `🛒 New Order Received – Order #${createdOrder.orderId}`, `Hello Admin, \nCustomerName:- ${shippingAddress.userFullName}\nCustomer Email: ${user.email}\nPayment Status: ${paymentMethod}`);
 
       return res.json({
         redirect: "/orderconfirm",
@@ -860,6 +879,28 @@ async function isLoggedInForAdmin(req, res, next) {
     console.log(err);
     res.render('error', { message: err });
   }
+};
+
+// Forgot password route
+
+
+// Send Mail.
+const sendMail = (to, sub, text) => {
+  transporter
+  .sendMail({
+    from: process.env.EMAIL_USER,
+    to: to,
+    subject: sub,
+    text: text
+  })
+  .then((info) => {
+    console.log("Message sent:", info.messageId);
+
+  })
+  .catch((err) => {
+    console.error("Mail error:", err);
+  });
+
 };
 
 module.exports = router;

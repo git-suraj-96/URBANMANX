@@ -52,10 +52,12 @@ const removeItem = (itemid) => {
         });
 };
 
-checkoutBtn.addEventListener("click", () => {
-    loaderBox.style.display = "block";
-    document.body.style.overflow = "hidden";
-});
+if (checkoutBtn) {
+    checkoutBtn.addEventListener("click", () => {
+        loaderBox.style.display = "block";
+        document.body.style.overflow = "hidden";
+    });
+}
 
 document.addEventListener("click", (e) => {
     if (e.target.closest(".product")) {

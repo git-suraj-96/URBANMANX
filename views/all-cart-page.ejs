@@ -89,12 +89,12 @@
             </button>
           </a>
           <button
-            class="hidden h-10 w-10 cursor-pointer items-center justify-center rounded-lg text-white transition-colors hover:bg-white/10 md:flex">
+            class="hidden h-10 w-10 cursor-pointer items-center justify-center rounded-lg text-white transition-colors hover:bg-white/10 md:flex product">
             <span class="material-symbols-outlined">favorite</span>
           </button>
           <a href="/shopping-cart-page" class="product">
             <button
-              class="relative flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-transparent text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+              class="relative flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-transparent text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 product">
               <span class="material-symbols-outlined text-2xl">shopping_cart</span>
               <div
                 class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-white text-[10px] font-bold cart-number">
@@ -228,7 +228,7 @@
           <div class="grid grid-cols-2 gap-[2px] md:grid-cols-4 md:gap-[2px]">
             <!-- Product Card -->
             <% recentlyView.forEach(product=>{%>
-              <a href="/product/<%= product._id %>">
+              <a href="/product/<%= product._id %>" class="product">
                 <div class="group relative cursor-pointer overflow-hidden rounded-[5px]">
                   <div
                     class="bg-center bg-no-repeat aspect-[3/4] bg-cover transition-transform duration-300 group-hover:scale-105"

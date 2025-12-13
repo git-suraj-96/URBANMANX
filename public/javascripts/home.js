@@ -132,7 +132,7 @@ searchBtn.addEventListener('click', () => {
 });
 
 smallScreenSearchBtn.addEventListener("click", ()=>{
-  console.log("hello")
+  console.log("Hello Suraj!");
 });
 
 function callSerach(query) {

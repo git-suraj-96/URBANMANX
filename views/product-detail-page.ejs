@@ -115,17 +115,7 @@
             </nav>
           </div>
           <div class="flex flex-1 justify-end gap-2 sm:gap-4">
-            <label class="hidden sm:flex flex-col min-w-40 !h-10 max-w-64">
-              <div class="flex w-full flex-1 items-stretch rounded-lg h-full">
-                <div
-                  class="text-white/50 flex border-none bg-white/5 items-center justify-center pl-3 rounded-l-lg border-r-0">
-                  <span class="material-symbols-outlined">search</span>
-                </div>
-                <input
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-white focus:outline-0 focus:ring-0 border-none bg-white/5 h-full placeholder:text-white/50 px-2 text-base font-normal leading-normal"
-                  placeholder="Search" value="" />
-              </div>
-            </label>
+            
             <div class="flex gap-2">
               
               <button
@@ -201,7 +191,7 @@
               <%= product.shortDescription %>
             </p>
             <h3 class="text-white text-3xl font-bold leading-tight">
-              ₹<%= product.sellingPrice %>
+              ₹<%= product.sellingPrice.toLocaleString("en-IN") %>
             </h3>
             <div class="w-full border-t border-white/10"></div>
             <div>
@@ -286,7 +276,7 @@
                   <h3 class="text-white font-bold truncate">
                     <%= product.productName %>
                   </h3>
-                  <p class="text-white/70">₹<%= product.sellingPrice %>
+                  <p class="text-white/70">₹<%= product.sellingPrice.toLocaleString('en-IN') %>
                   </p>
                 </div>
               </div>

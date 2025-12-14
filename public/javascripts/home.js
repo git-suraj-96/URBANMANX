@@ -85,12 +85,12 @@ const newArrivalsProductChange = (data) => {
                       />
                     </div>
                     <div class="flex flex-col p-4 flex-grow">
-                      <h3 class="text-white font-bold text-lg line-clamp-2">${product.productName}</h3>
-                      <p class="text-white/70 text-sm mt-1 mb-4 flex-grow line-clamp-2">
+                      <h3 class="text-white font-bold text-lg line-clamp-2 test-white truncate">${product.productName}</h3>
+                      <p class="text-white/70 text-sm mt-1 mb-4 flex-grow line-clamp-2 text-white truncate">
                         ${product.shortDescription}
                       </p>
                       <div class="flex items-baseline gap-2 mt-auto">
-                        <p class="text-primary font-bold text-xl">₹${product.sellingPrice}</p>
+                        <p class="text-primary font-bold text-xl">₹${product.sellingPrice.toLocaleString('en-IN')}</p>
                         <p class="text-white/50 line-through text-sm">₹${product.originalPrice}</p>
                       </div>
                     </div>`;

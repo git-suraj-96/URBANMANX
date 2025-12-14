@@ -41,16 +41,7 @@
                 </h2>
               </a>
             </div>
-            <nav class="hidden items-center gap-9 lg:flex ml-40">
-              <a class="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal product"
-                href="/">Home</a>
-              <a class="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal product"
-                href="#">Shop</a>
-              <a class="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal product"
-                href="#">Deals</a>
-              <a class="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal product"
-                href="#footer">About</a>
-            </nav>
+            
             <div class="flex flex-1 justify-around items-center gap-4 sm:gap-6">
               <label class="hidden sm:flex flex-col min-w-40 !h-10 w-[60%]">
                 <div class="flex w-full flex-1 items-stretch rounded-lg h-full">
@@ -71,7 +62,7 @@
                 <a href="/shopping-cart-page" class="product">
                   <button
                     class="relative flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-transparent text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
-                    <span class="material-symbols-outlined text-2xl">shopping_cart</span>
+                    <img src="/images/static-images/cart.png" alt="HOME" class="h-[25px]">
                     <div
                       class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-white text-[10px] font-bold">
                       <%= cart.length %>
@@ -82,9 +73,7 @@
                 <a href="/profile">
                   <button
                     class="relative flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-transparent text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 product">
-                    <span class="material-symbols-outlined text-2xl">
-                      account_circle
-                    </span>
+                    <img src="/images/static-images/profile.png" alt="Prodile" class="h-[28px] bg-white rounded-[50%]">
                   </button>
                 </a>
               </div>
@@ -218,31 +207,31 @@
               </h2>
               <div class="flex gap-3 p-3 flex-wrap px-4 cursor-pointer">
                 <button
-                  class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary pl-4 pr-4 transition-transform hover:scale-105 active:scale-95 new-arrivals-header-btn new-arrival-btn">
+                  class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary pl-4 pr-4 transition-transform hover:scale-105 active:scale-95 new-arrivals-header-btn new-arrival-btn cursor-pointer">
                   <p class="text-white text-sm font-semibold leading-normal">
                     ALL PRODUCTS
                   </p>
                 </button>
                 <button
-                  class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 pl-4 pr-4 transition-transform hover:scale-105 active:scale-95 new-arrivals-header-btn new-arrival-btn">
+                  class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 pl-4 pr-4 transition-transform hover:scale-105 active:scale-95 new-arrivals-header-btn new-arrival-btn cursor-pointer">
                   <p class="text-white/80 text-sm font-medium leading-normal">
                     T-SHIRT
                   </p>
                 </button>
                 <button
-                  class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 pl-4 pr-4 transition-transform hover:scale-105 active:scale-95 new-arrivals-header-btn new-arrival-btn">
+                  class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 pl-4 pr-4 transition-transform hover:scale-105 active:scale-95 new-arrivals-header-btn new-arrival-btn cursor-pointer">
                   <p class="text-white/80 text-sm font-medium leading-normal">
                     SHIRT
                   </p>
                 </button>
                 <button
-                  class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 pl-4 pr-4 transition-transform hover:scale-105 active:scale-95 new-arrivals-header-btn new-arrival-btn">
+                  class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 pl-4 pr-4 transition-transform hover:scale-105 active:scale-95 new-arrivals-header-btn new-arrival-btn cursor-pointer">
                   <p class="text-white/80 text-sm font-medium leading-normal">
                     CARGO
                   </p>
                 </button>
                 <button
-                  class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 pl-4 pr-4 transition-transform hover:scale-105 active:scale-95 new-arrivals-header-btn new-arrival-btn">
+                  class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 hover:bg-white/20 pl-4 pr-4 transition-transform hover:scale-105 active:scale-95 new-arrivals-header-btn new-arrival-btn cursor-pointer">
                   <p class="text-white/80 text-sm font-medium leading-normal">
                     BOTTOMS
                   </p>
@@ -269,9 +258,9 @@
                             <% product.shortDescription %>
                           </p>
                           <div class="flex items-baseline gap-2 mt-auto">
-                            <p class="text-primary font-bold text-xl">₹<%= (product.sellingPrice) %>
+                            <p class="text-primary font-bold text-xl">₹<%= (product.sellingPrice).toLocaleString('en-IN') %>
                             </p>
-                            <p class="text-white/50 line-through text-sm">₹<%= product.originalPrice %>
+                            <p class="text-white/50 line-through text-sm">₹<%= product.originalPrice.toLocaleString('en-IN') %>
                             </p>
                           </div>
                         </div>
@@ -425,63 +414,58 @@
           </div>
         </div>
       </div>
-      <div class="flex flex-col flex-1 px-4 gap-1 overflow-y-auto">
+      <div class="flex flex-col flex-1 px-4 gap-1 overflow-y-auto ">
         <div class="px-3 py-2">
           <p class="text-[#6b7280] text-xs font-bold uppercase tracking-wider mb-2">Menu</p>
         </div>
-        <a class="flex items-center gap-3 px-3 py-3 rounded-lg bg-primary text-white shadow-lg shadow-primary/20 group"
+        <a class="flex items-center gap-3 px-3 py-3 rounded-lg bg-primary text-white shadow-lg shadow-primary/20 group product"
           href="/">
-          <span class="material-symbols-outlined text-[22px]">home</span>
+          <img src="/images/static-images/home.png" alt="HOME" class="h-[25px]">
           <p class="text-sm font-medium leading-normal">Home</p>
         </a>
-        <a id="category-option-btn" class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group"
+        <a id="category-option-btn" class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group "
           href="#">
-          <span class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">grid_view</span>
+          <img src="/images/static-images/categories.png" alt="Categories" class="h-[25px] bg-white ">
           <p class="text-sm font-medium leading-normal">Categories</p>
         </a>
         <div class="hidden transition-all " id="category-option">
           <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group product"
             href="/Explore/tshirt">
-            <span
-              class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">grid_view</span>
+            <img src="/images/static-images/t-shirt.png" alt="T-Shirt" class="h-[25px] bg-white rounded-[2px]">
             <p class="text-sm font-medium leading-normal">T-SHIRT</p>
           </a>
           <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group product"
             href="/Explore/shirt">
-            <span
-              class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">grid_view</span>
+            <img src="/images/static-images/shirt.png" alt="Shirt" class="h-[25px] bg-white">
             <p class="text-sm font-medium leading-normal">SHIRT</p>
           </a>
           <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group product"
             href="/Explore/bottoms">
-            <span
-              class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">grid_view</span>
+            <img src="/images/static-images/bottom.png" alt="Bottoms" class="h-[25px] bg-white rounded-[2px]">
             <p class="text-sm font-medium leading-normal">BOTTOMS</p>
           </a>
           <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group product"
             href="/Explore/cargos">
-            <span
-              class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">grid_view</span>
+            <img src="/images/static-images/cargo-pants.png" alt="Bottoms" class="h-[25px] bg-white rounded-[2px]">
             <p class="text-sm font-medium leading-normal">CARGOS</p>
           </a>
         </div>
-        <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group justify-between"
+        <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group relative justify-between product"
           href="/shopping-cart-page">
           <div class="flex items-center gap-3">
-            <span
-              class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">shopping_cart</span>
+            <img src="/images/static-images/cart.png" alt="Cart" class="h-[25px]">
             <p class="text-sm font-medium leading-normal">Cart</p>
           </div>
-          <span class="bg-primary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+          <span class="bg-primary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full absolute top-[2px] left-[5px]">
             <%= cart.length %>
           </span>
         </a>
-        <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group"
+        <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group product"
           href="/profile">
-          <span class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">person</span>
+          <img src="/images/static-images/profile.png" alt="Profile" class="h-[25px] bg-white rounded-[50%]">
           <p class="text-sm font-medium leading-normal">Profile</p>
         </a>
-        <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group"
+        <a class="flex items-center gap-3 px-3 py-3 rounded-lg text-[#a1a1a1] hover:text-white hover:bg-white/5 transition-all group product"
           href="#">
           <span class="material-symbols-outlined text-[22px] group-hover:text-white transition-colors">favorite</span>
           <p class="text-sm font-medium leading-normal">Favorites</p>
@@ -498,6 +482,7 @@
       </div>
     </aside>
   </div>
+
   <script src="/javascripts/home.js"></script>
 </body>
 

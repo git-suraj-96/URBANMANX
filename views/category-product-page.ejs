@@ -69,9 +69,6 @@
           <header
             class="fixed top-0 left-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-6 sm:px-10 py-4 bg-background-dark/80 backdrop-blur-sm nav-bar fixed top-0 w-full">
             <div class="flex items-center gap-4">
-              <button class="flex items-center justify-center text-white lg:hidden">
-                <span class="material-symbols-outlined text-2xl">menu</span>
-              </button>
               <a class="flex items-center gap-3 text-white" href="#">
                 <div class="size-6">
                   <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
@@ -95,26 +92,15 @@
               <a class="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal product"
                 href="/Explore/bottoms">BOTTOMS</a>
             </nav>
-            <div class="flex flex-1 justify-around items-center gap-4 sm:gap-6">
+            <div class="flex flex-1 justify-end items-center gap-4 sm:gap-6">
               <label class="hidden sm:flex flex-col min-w-40 !h-10 w-[60%]">
-                <div class="flex w-full flex-1 items-stretch rounded-lg h-full">
-                  <div
-                    class="text-white/60 flex border-none bg-white/10 items-center justify-center pl-3 rounded-l-lg border-r-0">
-                    <span class="material-symbols-outlined text-xl">search</span>
-                  </div>
-                  <input
-                    class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border-none bg-white/10 h-full placeholder:text-white/60 px-3 pl-2 text-sm font-normal leading-normal"
-                    placeholder="Search" value />
-                </div>
               </label>
-              <button class="sm:hidden flex items-center justify-center text-white">
-                <span class="material-symbols-outlined text-2xl">search</span>
-              </button>
+              
               <div class="flex justify-center item-center">
                 <a href="/shopping-cart-page" class="product">
                   <button
                     class="relative flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-transparent text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
-                    <span class="material-symbols-outlined text-2xl">shopping_cart</span>
+                    <img src="/images/static-images/cart.png" alt="CART" class="h-[25px]">
                     <div
                       class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-white text-[10px] font-bold">
                       <%= cart.length %>
@@ -124,9 +110,13 @@
                 <a href="/profile">
                   <button
                   class="relative flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-transparent text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
-                  <span class="material-symbols-outlined text-2xl">
-                    account_circle
-                  </span>
+                  <img src="/images/static-images/profile.png" alt="PROFILE" class="h-[29px] rounded-[50%] bg-white">
+                </button>
+                </a>
+                <a href="/">
+                  <button
+                  class="relative flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-transparent text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+                 <img src="/images/static-images/home.png" alt="HOME" class="h-[25px]">
                 </button>
                 </a>
               </div>
@@ -212,8 +202,8 @@
 
                         <!-- Price Section -->
                         <div class="flex items-center gap-2">
-                          <span class="text-primary font-bold text-lg">₹<%= product.sellingPrice %></span>
-                          <span class="text-gray-500 line-through text-sm">₹<%= product.originalPrice %></span>
+                          <span class="text-primary font-bold text-lg">₹<%= product.sellingPrice.toLocaleString('en-IN') %></span>
+                          <span class="text-gray-500 line-through text-sm">₹<%= product.originalPrice.toLocaleString('en-IN') %></span>
                         </div>
                       </a>
                     </div>

@@ -139,7 +139,7 @@
                         </p>
                        </a>
                         <p class="text-gray-400 text-sm font-normal leading-normal">
-                          ₹<%= item.productId.sellingPrice %>
+                          ₹<%= item.productId.sellingPrice.toLocaleString('en-IN') %>
                         </p>
                         <p class="text-gray-400 text-sm font-normal leading-normal">
                           Size: <%= item.size %>
@@ -245,7 +245,7 @@
                     <h3 class="font-semibold text-white">
                       <%= product.productName %>
                     </h3>
-                    <p class="text-sm text-gray-300">Rs<%= product.sellingPrice %>
+                    <p class="text-sm text-gray-300">Rs<%= product.sellingPrice.toLocaleString('en-IN') %>
                     </p>
                   </div>
                 </div>

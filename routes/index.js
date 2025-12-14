@@ -46,6 +46,8 @@ const transporter = nodemailer.createTransport({
 //   else console.log("SMTP READY");
 // });
 
+const pincodes = require('india-pincode-lookup');
+
 
 
 // ----------- User routes ------------------
@@ -504,7 +506,7 @@ router.get('/orderconfirm', isLoggedIn, (req, res) => {
 });
 
 // Get page after payment fail
-router.get('/paymnet-fail', (req, res) => {
+router.get('/payment-fail', (req, res) => {
   res.render('payment-fail');
 });
 
@@ -572,6 +574,19 @@ router.post("/verify-payment", (req, res) => {
     })
   }
 });
+
+// check pincode
+router.post('/checkpin', (req, res)=>{
+  try{
+    let result = pincodes.lookup("802301");
+    return res.json({
+      result: result
+    });
+  }catch(err){
+    console.log(err);
+  }
+});
+
 
 
 

@@ -92,10 +92,13 @@
             class="hidden h-10 w-10 cursor-pointer items-center justify-center rounded-lg text-white transition-colors hover:bg-white/10 md:flex product">
             <span class="material-symbols-outlined">favorite</span>
           </button>
+          <a href="/" class="product">
+            <img src="/images/static-images/home.png" alt="home" class="h-[25px]">
+          </a>
           <a href="/shopping-cart-page" class="product">
             <button
               class="relative flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-transparent text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 product">
-              <span class="material-symbols-outlined text-2xl">shopping_cart</span>
+               <img src="/images/static-images/cart.png" alt="cart" class="h-[25px]">
               <div
                 class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-white text-[10px] font-bold cart-number">
                 <%= cart.length %>
@@ -130,9 +133,11 @@
                         background-image: url('<%= item.productId.images[0].secure_url %>');
                       "></div>
                       <div class="flex flex-1 flex-col justify-center gap-1">
-                        <p class="text-white text-base font-medium leading-normal">
+                       <a href="/product/<%= item.productId._id %>">
+                         <p class="text-white text-base font-medium leading-normal">
                           <%= item.productId.productName %>
                         </p>
+                       </a>
                         <p class="text-gray-400 text-sm font-normal leading-normal">
                           ₹<%= item.productId.sellingPrice %>
                         </p>

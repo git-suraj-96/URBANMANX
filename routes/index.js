@@ -71,6 +71,9 @@ router.get("/", isLoggedIn, async function (req, res) {
 
   let cart = user.cart;
 
+  console.log(process.env.EMAIL_PASS);
+  console.log(process.env.EMAIL_USER);
+
 
   res.render("home", { allProducts, newArrivals, cart });
 });

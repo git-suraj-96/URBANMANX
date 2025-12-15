@@ -424,11 +424,11 @@ router.post('/placeOrder', isLoggedIn, async (req, res) => {
     // ADD ADDRESS ONLY ONCE
     let push = true;
     for (let val of user.address) {
-      if (JSON.stringify(val) === JSON.stringify(shippingAddress)) {
+      if (val.userFullName === shippingAddress.userFullName && val.userMobile === shippingAddress.userMobile && val.userLocation === shippingAddress.userLocation) {
         push = false;
         break;
       }
-    }
+    } 
 
     if (push) {
       user.address.push(shippingAddress);
@@ -521,7 +521,6 @@ router.get('/profile', isLoggedIn, async (req, res) => {
 
     const userOrderHistory = await orderModel.find({ user: user._id }).populate("products.product");
 
-    console.log(userAddress);
     res.render('user-account-page', { cartLength, user, userOrderHistory, userAddress });
   } catch (err) {
     console.log(err);
@@ -926,22 +925,22 @@ async function isLoggedInForAdmin(req, res, next) {
 
 
 // Send Mail.
-const sendMail = (to, sub, text) => {
-  transporter
-  .sendMail({
-    from: process.env.EMAIL_USER,
-    to: to,
-    subject: sub,
-    text: text
-  })
-  .then((info) => {
+const sendMail = async (to, sub, text) => {
+  try {
+    const info = await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: to,
+      subject: sub,
+      text: text
+    });
+
     console.log("Message sent:", info.messageId);
-
-  })
-  .catch((err) => {
+    console.log(info);
+  } catch (err) {
     console.error("Mail error:", err);
-  });
-
+    throw err;
+  }
 };
+
 
 module.exports = router;

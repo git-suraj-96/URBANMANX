@@ -1,6 +1,6 @@
 let sidebarBtns = document.querySelectorAll(".sidebar-button");
 const profileBtn = document.getElementById("profile");
-const myOrderBtn =document.getElementById('my-order');
+const myOrderBtn = document.getElementById('my-order');
 const myAddBtn = document.getElementById("my-add");
 const profileDetail = document.getElementById("profile-detail");
 const orderDetail = document.getElementById("order-detail");
@@ -12,8 +12,8 @@ const profileXBtn = document.getElementById('profile-x-btn');
 const addDeleteBtn = document.querySelectorAll('.add-delete');
 
 sidebarBtns.forEach(btn => {
-    btn.addEventListener("click", ()=>{
-        sidebarBtns.forEach(ele =>{
+    btn.addEventListener("click", () => {
+        sidebarBtns.forEach(ele => {
             ele.style.background = "none";
             ele.querySelector("p").style.color = "grey";
         })
@@ -22,40 +22,60 @@ sidebarBtns.forEach(btn => {
     })
 });
 
-myOrderBtn.addEventListener("click", ()=>{
+myOrderBtn.addEventListener("click", () => {
     profileDetail.style.display = "none";
     addDetail.style.display = "none";
     orderDetail.style.display = "block";
 });
 
-profileBtn.addEventListener("click", ()=>{
+profileBtn.addEventListener("click", () => {
     profileDetail.style.display = "block";
     addDetail.style.display = "none";
     orderDetail.style.display = "none";
 });
 
-myAddBtn.addEventListener("click", ()=>{
+myAddBtn.addEventListener("click", () => {
     profileDetail.style.display = "none";
     addDetail.style.display = "block";
     orderDetail.style.display = "none";
 });
 
-editProfileBtn.addEventListener("click", ()=>{
+editProfileBtn.addEventListener("click", () => {
     editProfileForm.style.display = 'block';
     document.body.style.overflow = "hidden";
 });
 
-profileXBtn.addEventListener('click', (e)=>{
+profileXBtn.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    editProfileForm.style.display  = "";
+    editProfileForm.style.display = "";
     document.body.style.overflow = "auto";
-    
+
 }, true);
 
-addDeleteBtn.forEach(btn =>{
-    btn.addEventListener("click", ()=>{
-        const addressId = btn.dataSet.addid;
+addDeleteBtn.forEach(btn => {
+    btn.addEventListener("click", () => {
+        const addressId = btn.dataset.addId;
         console.log(addressId);
+
+        fetch("/deleteAdd", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                addressId: addressId
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log("Response:", data);
+                if(data.success){
+                    btn.closest(".add-card").style.display = "none";
+                }
+            })
+            .catch(err => {
+                console.error("Error:", err);
+            });
     })
 })

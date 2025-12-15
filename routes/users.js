@@ -17,7 +17,7 @@ const addressSchema = new mongoose.Schema(
       type: String
     }
   },
-  { _id: false }
+  { _id: true }
 );
 
 const userSchema = new mongoose.Schema({

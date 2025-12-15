@@ -312,6 +312,7 @@ router.post("/removeCartItem", isLoggedIn, async (req, res) => {
         user.cart.splice(i, 1);
         await user.save();
         removed = true;
+        break;
       }
     }
 
@@ -570,7 +571,6 @@ router.post("/verify-payment", (req, res) => {
     return res.json({
       success: false,
       payment_stauts: 'fail',
-      page: '/payment-fail'
     })
   }
 });
@@ -585,9 +585,7 @@ router.post('/checkpin', (req, res)=>{
   }catch(err){
     console.log(err);
   }
-});
-
-
+});;
 
 
 //----------- Admin routes ---------------------

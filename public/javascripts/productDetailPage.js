@@ -78,6 +78,8 @@ addToCartBtn.addEventListener("click", () => {
         if(data.success){
             cartNumber.innerHTML = parseInt(cartNumber.innerHTML)+1;
             toaster.innerHTML = data.message;
+            toaster.style.fontSize = "15px";
+            toaster.style.top = '60px';
             toaster.style.display = "block";
         }else{
             toaster.innerHTML = data.error;

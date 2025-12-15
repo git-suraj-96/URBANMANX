@@ -9,6 +9,7 @@ const editProfileBtn = document.getElementById("edit-profile");
 const profileSaveBtn = document.getElementById('profile-save-btn');
 const editProfileForm = document.getElementById('edit-profile-form');
 const profileXBtn = document.getElementById('profile-x-btn');
+const addDeleteBtn = document.querySelectorAll('.add-delete');
 
 sidebarBtns.forEach(btn => {
     btn.addEventListener("click", ()=>{
@@ -50,4 +51,11 @@ profileXBtn.addEventListener('click', (e)=>{
     editProfileForm.style.display  = "";
     document.body.style.overflow = "auto";
     
-}, true)
+}, true);
+
+addDeleteBtn.forEach(btn =>{
+    btn.addEventListener("click", ()=>{
+        const addressId = btn.dataSet.addid;
+        console.log(addressId);
+    })
+})

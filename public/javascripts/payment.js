@@ -126,14 +126,17 @@ upiPayBtn.addEventListener("click", async () => {
       })
         .then(r => r.json())
         .then(data => {
-          alert(data.success ? "Payment success" : "Payment failed");
-          window.location.href = data.page;
+          if(data.success){
+            window.location.href = data.page;
+          }else{
+            alert("Paymet failed.\nTry Again.")
+          }
         });
     },
 
     modal: {
       ondismiss: function () {
-        window.location.href = '/payment-fail';
+        alert("Payment Fail\nTry Again");
       },
     },
   };

@@ -33,18 +33,20 @@ cloudinary.config({
 
 // It will send email using gmail.
 const nodemailer = require("nodemailer");
+
+
+// transporter
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp-relay.brevo.com",
+  port: 587,
+  secure: false,
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
+    user: "9e1ea8001@smtp-brevo.com",
+    pass: process.env.BREVO_SMTP_KEY,
+  },
 });
 
-// transporter.verify((err) => {
-//   if (err) console.log("SMTP ERROR:", err);
-//   else console.log("SMTP READY");
-// });
+
 
 const pincodes = require('india-pincode-lookup');
 
@@ -533,7 +535,7 @@ router.post("/create-order", async (req, res) => {
   const options = {
     amount: req.body.amount * 100, // convert to paise
     currency: "INR",
-    receipt: "receipt_123" + Date.now(),
+    receipt: "receipt" + Date.now(),
   };
 
   try {
@@ -927,20 +929,19 @@ async function isLoggedInForAdmin(req, res, next) {
 // Send Mail.
 const sendMail = async (to, sub, text) => {
   try {
-    const info = await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: to,
+    let res = await transporter.sendMail({
+      from: '"URBANMANX" <urbanmanx830@gmail.com>',
+      to,
       subject: sub,
-      text: text
+      text,
     });
-
-    console.log("Message sent:", info.messageId);
-    console.log(info);
+    console.log(res);
+    console.log("Mail sent successfully");
   } catch (err) {
     console.error("Mail error:", err);
-    throw err;
   }
 };
+
 
 
 module.exports = router;

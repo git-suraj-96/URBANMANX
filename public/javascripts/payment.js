@@ -100,7 +100,7 @@ upiPayBtn.addEventListener("click", async () => {
   });
 
   order = await order.json();
-  loaderBox.style.display = "";
+  
 
   var options = {
     key: "rzp_test_RldB4sV5LgYUzp",
@@ -131,6 +131,7 @@ upiPayBtn.addEventListener("click", async () => {
           }else{
             alert("Paymet failed.\nTry Again.")
           }
+          loaderBox.style.display = "";
         });
     },
 
@@ -162,7 +163,7 @@ cardPayBtn.addEventListener("click", async () => {
   });
 
   order = await order.json();
-  loaderBox.style.display = "";
+  
 
   var options = {
     key: "rzp_test_RldB4sV5LgYUzp",
@@ -190,6 +191,7 @@ cardPayBtn.addEventListener("click", async () => {
         .then(data => {
           alert(data.success ? "Payment success" : "Payment failed");
           window.location.href = data.page;
+          loaderBox.style.display = "";
         });
     },
 

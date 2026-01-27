@@ -430,7 +430,7 @@ router.post('/placeOrder', isLoggedIn, async (req, res) => {
         push = false;
         break;
       }
-    } 
+    }
 
     if (push) {
       user.address.push(shippingAddress);
@@ -477,7 +477,7 @@ router.post('/placeOrder', isLoggedIn, async (req, res) => {
 
       await user.save();
 
-      sendMail(user.email, `✅ Your Order is Confirmed – #${createdOrder.orderId}`, "Delivery Expected Soon!" );
+      sendMail(user.email, `✅ Your Order is Confirmed – #${createdOrder.orderId}`, "Delivery Expected Soon!");
       sendMail("surajara96@gmail.com", `🛒 New Order Received – Order #${createdOrder.orderId}`, `Hello Admin, \nCustomerName:- ${shippingAddress.userFullName}\nCustomer Email: ${user.email}\nPayment Status: ${paymentMethod}`);
 
       return res.json({
@@ -576,44 +576,44 @@ router.post("/verify-payment", (req, res) => {
 });
 
 // check pincode
-router.post('/checkpin', (req, res)=>{
-  try{
+router.post('/checkpin', (req, res) => {
+  try {
     let result = pincodes.lookup("802301");
     return res.json({
       result: result
     });
-  }catch(err){
+  } catch (err) {
     console.log(err);
   }
 });;
 
 // Delete existence user address route
-router.post('/deleteAdd', async (req, res)=>{
-  try{
-    const {addressId} = req.body;
+router.post('/deleteAdd', async (req, res) => {
+  try {
+    const { addressId } = req.body;
     const token = req.cookies.token;
     const decode = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await userModel.findOne({email: decode.email});
+    const user = await userModel.findOne({ email: decode.email });
     let del = false;
-    for(let i = 0; i < user.address.length; i++){
-      if((user.address[i]._id).toString() === addressId){
+    for (let i = 0; i < user.address.length; i++) {
+      if ((user.address[i]._id).toString() === addressId) {
         user.address.splice(i, 1);
         await user.save();
         del = true;
         break;
       }
     }
-    if(del){
+    if (del) {
       return res.json({
         success: true,
         message: "Address deleted succesfully"
       })
-    }else{
-      return res.render("error", {message: "Something went wrong..."});
+    } else {
+      return res.render("error", { message: "Something went wrong..." });
     }
-  }catch(err){
+  } catch (err) {
     console.log(err);
-    return res.render("error", {message: "Something went wrong\nType Error: "+err});
+    return res.render("error", { message: "Something went wrong\nType Error: " + err });
   };
 })
 
@@ -783,7 +783,6 @@ router.get("/login", (req, res) => {
   res.render("login", { message: null });
 });
 
-// Register user
 // Register user
 router.post("/signup", async (req, res) => {
   try {

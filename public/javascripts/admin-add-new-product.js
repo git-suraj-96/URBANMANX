@@ -24,6 +24,7 @@ images.addEventListener("change", () => {
     const files = images.files;
     for (let i = 0; i < files.length; i++) {
         imagePath.push(files[i]);
+        
     }
     console.log(imagePath);
 });
